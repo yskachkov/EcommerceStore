@@ -1,40 +1,16 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar
-} from 'react-native';
-import { Header, Colors } from 'react-native/Libraries/NewAppScreen';
+import { Provider } from 'react-redux';
+
+import textConnector from './store/connectors/text';
+import { Main } from './screens/Main';
+import { store } from './store';
+
+const MainWithText = textConnector(Main);
 
 const App = () => (
-  <>
-    <StatusBar barStyle="dark-content" />
-    <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        style={styles.scrollView}
-      >
-        <Header />
-        <Text style={styles.text}>Native</Text>
-        <View style={styles.body} />
-      </ScrollView>
-    </SafeAreaView>
-  </>
+  <Provider store={store}>
+    <MainWithText />
+  </Provider>
 );
-
-const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter
-  },
-  body: {
-    backgroundColor: Colors.white
-  },
-  text: {
-    color: Colors.black
-  }
-});
 
 export default App;
