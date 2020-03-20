@@ -1,15 +1,15 @@
-import { takeEvery, call, put } from 'redux-saga/effects';
-import { UPDATE_TEXT_ASYNC } from './actionTypes';
-import { updateText } from './actions';
+import { takeLatest, call, put } from 'redux-saga/effects';
+
+import { textActions } from './';
 
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
-function* updateTextAsync({ payload: { text } }) {
+function* updateTextAsync({ payload: { text: updatedText } }) {
   yield call(delay, 2000);
 
-  yield put(updateText(text));
+  yield put(textActions.updateText(updatedText));
 }
 
 export function* watchAsyncTextUpdate() {
-  yield takeEvery(UPDATE_TEXT_ASYNC, updateTextAsync);
+  yield takeLatest(textActions.updateTextAsync.type, updateTextAsync);
 }

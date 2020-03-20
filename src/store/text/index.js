@@ -1,17 +1,24 @@
+import { createAction, createSlice } from '@reduxjs/toolkit';
+
 import { initialState } from './initialState';
-import { UPDATE_TEXT, RESET_TEXT } from './actionTypes';
+import { prepareTextPayload } from './utils';
 
-export const textReducer = (state = initialState, { type: actionType, payload: actionPayload }) => {
-  switch (actionType) {
-    case UPDATE_TEXT:
-      const { text } = actionPayload;
-
-      return text;
-
-    case RESET_TEXT:
-      return initialState;
-
-    default:
-      return state;
+const text = createSlice({
+  name: 'text',
+  initialState,
+  reducers: {
+    updateText: {
+      reducer: (state, { payload: { text: updatedText } }) => updatedText,
+      prepare: prepareTextPayload
+    },
+    resetText: () => initialState
   }
+});
+
+export const updateTextAsync = createAction('text/updateTextAsync', prepareTextPayload);
+
+export const textReducer = text.reducer;
+export const textActions = {
+  ...text.actions,
+  updateTextAsync
 };

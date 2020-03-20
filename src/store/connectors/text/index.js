@@ -1,16 +1,14 @@
 import { connect } from 'react-redux';
 
 import { getText } from 'src/store/text/selectors';
-import { updateText, updateTextAsync, resetText } from 'src/store/text/actions';
+import { textActions } from 'src/store/text';
 
 const mapStateToProps = state => ({
   text: getText(state)
 });
 
 const mapActionCreatorsToProps = {
-  updateText,
-  updateTextAsync,
-  resetText
+  ...textActions
 };
 
 export default connect(mapStateToProps, mapActionCreatorsToProps);

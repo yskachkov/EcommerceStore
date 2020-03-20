@@ -5,3 +5,11 @@ Reactotron.setAsyncStorageHandler(AsyncStorage)
   .configure()
   .useReactNative()
   .connect();
+
+// test display
+Reactotron.display({
+  name: 'React Native',
+  preview: 'Hello',
+  value: 'world',
+  important: true
+});

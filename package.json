@@ -6,13 +6,15 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "start": "react-native start",
+    "clean-start": "react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint .",
     "prettier": "prettier \"src/**/*.{js,jsx,test.js,spec.js}\" --write",
     "sync-reactotron": "adb reverse tcp:9090 tcp:9090"
   },
   "dependencies": {
-    "@reduxjs/toolkit": "^1.2.5",
+    "@reduxjs/toolkit": "1.2.5",
+    "lodash": "4.17.15",
     "react": "16.9.0",
     "react-native": "0.61.5",
     "react-redux": "7.2.0",

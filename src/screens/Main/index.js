@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Text, View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, Text } from 'react-native';
 
 import styles from './styles';
 
@@ -19,3 +19,5 @@ export const Main = memo(({ text, updateText, updateTextAsync, resetText }) => (
     </View>
   </>
 ));
+
+Main.displayName = 'Main';

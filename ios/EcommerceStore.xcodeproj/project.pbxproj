@@ -194,7 +194,6 @@
 				6854428CCFB966A22178C9D9 /* Pods-EcommerceStoreTests.debug.xcconfig */,
 				5FC73EFA2069C873C1CDE91B /* Pods-EcommerceStoreTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -305,7 +304,7 @@
 			};
 			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "EcommerceStore" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
