@@ -9,7 +9,7 @@ export const withFormikField = FormField => {
       const handleFieldChange = useCallback(text => handleChange(name)(text), [name, handleChange]);
 
       return (
-        <FormField {...props} name={name} value={values[name]} onChangeValue={handleFieldChange} />
+        <FormField {...props} name={name} value={values[name]} onChangeText={handleFieldChange} />
       );
     },
     ({ formik: { values: previousValues } }, { formik: { values }, name }) =>

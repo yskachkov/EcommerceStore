@@ -3,7 +3,7 @@ import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { GradientView, Link, Button } from 'src/components';
-import { FormInput } from 'src/components/Forms';
+import FormInput from 'src/components/Forms/Input';
 import styles from './SignUp.styles';
 
 export const SignUp = memo(({ handleSubmit }) => (
