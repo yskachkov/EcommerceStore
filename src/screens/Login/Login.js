@@ -13,8 +13,9 @@ export const Login = memo(({ handleSubmit }) => (
     <KeyboardAwareScrollView>
       <View style={styles.container}>
         <Text style={styles.title}>Ecommerce Store</Text>
-        <FormInput name="email" placeholder="Email Address" style={styles.input} />
+        <FormInput name="login" placeholder="Email or Login" style={styles.input} />
         <FormInput
+          secureTextEntry
           name="password"
           placeholder="Password"
           style={[styles.input, styles.passwordInput]}

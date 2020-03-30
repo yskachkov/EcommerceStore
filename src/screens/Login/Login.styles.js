@@ -8,9 +8,8 @@ export default StyleSheet.create({
   },
   container: {
     paddingTop: 150,
-    paddingRight: 25,
-    paddingBottom: 120,
-    paddingLeft: 25
+    paddingHorizontal: 25,
+    paddingBottom: 120
   },
   title: {
     width: 200,

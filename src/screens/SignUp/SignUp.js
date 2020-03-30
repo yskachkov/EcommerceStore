@@ -17,8 +17,9 @@ export const SignUp = memo(({ handleSubmit }) => (
         <Text style={styles.title}>Ecommerce Store</Text>
         <FormInput name="fullName" placeholder="Full Name" style={styles.input} />
         <FormInput name="email" placeholder="Email Address" style={styles.input} />
-        <FormInput name="password" placeholder="Password" style={styles.input} />
+        <FormInput secureTextEntry name="password" placeholder="Password" style={styles.input} />
         <FormInput
+          secureTextEntry
           name="confirmPassword"
           placeholder="Confirm Password"
           style={[styles.input, styles.confirmPasswordInput]}

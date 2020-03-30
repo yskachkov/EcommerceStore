@@ -9,16 +9,13 @@ export default StyleSheet.create({
   backIcon: {
     width: 60,
     height: 50,
-    paddingTop: 10,
-    paddingRight: 15,
-    paddingBottom: 10,
-    paddingLeft: 15
+    paddingVertical: 10,
+    paddingHorizontal: 15
   },
   container: {
     paddingTop: 70,
-    paddingRight: 25,
-    paddingBottom: 120,
-    paddingLeft: 25
+    paddingHorizontal: 25,
+    paddingBottom: 120
   },
   title: {
     width: 200,

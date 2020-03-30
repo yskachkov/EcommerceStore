@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import { FlatList, Image, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 
 import { ProductCard } from 'src/components';
 import styles from './ProductList.styles.js';
