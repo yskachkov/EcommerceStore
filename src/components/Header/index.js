@@ -3,8 +3,8 @@ import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { colors } from 'src/assets/styles/colors';
-import styles from './Header.styles';
 import { Input } from 'src/components/Forms/Input';
+import styles from './Header.styles';
 
 export const Header = memo(({ title, withSearch, withSearchBar, withCart }) => (
   <View style={styles.container}>

@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 
 // import Login from './screens/Login';
 // import SignUp from './screens/SignUp';
-import { Main } from './screens/Main';
+import Main from './screens/Main';
 import { store } from './store';
 
 const App = () => (

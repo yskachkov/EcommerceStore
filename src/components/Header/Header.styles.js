@@ -4,10 +4,7 @@ import { colors } from 'src/assets/styles/colors';
 
 export default StyleSheet.create({
   container: {
-    paddingTop: 15,
-    paddingRight: 20,
-    paddingBottom: 15,
-    paddingLeft: 20,
+    padding: 15,
     backgroundColor: colors.bostonBlue
   },
   row: {

@@ -6,10 +6,18 @@ export default StyleSheet.create({
   gradientView: {
     flex: 1
   },
-  view: {
-    paddingTop: 120,
+  backIcon: {
+    width: 60,
+    height: 50,
+    paddingTop: 10,
+    paddingRight: 15,
+    paddingBottom: 10,
+    paddingLeft: 15
+  },
+  container: {
+    paddingTop: 70,
     paddingRight: 25,
-    paddingBottom: 25,
+    paddingBottom: 120,
     paddingLeft: 25
   },
   title: {
@@ -22,10 +30,10 @@ export default StyleSheet.create({
     lineHeight: 45
   },
   input: {
+    marginBottom: 15,
     borderBottomWidth: 1,
     borderStyle: 'solid',
-    borderBottomColor: 'black',
-    marginBottom: 20,
+    borderBottomColor: colors.black,
     fontSize: 18
   },
   confirmPasswordInput: {
@@ -35,10 +43,16 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 15
   },
-  submitButton: {
+  submitButtonContainer: {
     marginBottom: 15
   },
-  signInButton: {
+  submitButton: {
+    textTransform: 'uppercase',
+    color: colors.white,
+    fontWeight: '600',
+    fontSize: 18
+  },
+  signInLink: {
     alignSelf: 'center'
   }
 });

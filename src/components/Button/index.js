@@ -1,21 +1,33 @@
-import React, { memo } from 'react';
-import { TouchableHighlight, Text } from 'react-native';
+import React, { memo, useMemo } from 'react';
+import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 
-import { colors } from 'src/assets/styles/colors';
+import { BUTTON_ACTIVE_OPACITY } from './constants';
+import { ButtonType } from './config';
 import styles from './Button.styles';
 
-export const Button = memo(({ title, children, style, onPress }) => {
-  const content = title || children;
+export const Button = memo(
+  ({ type = ButtonType.Solid, title, iconRight, icon, containerStyle, buttonStyle, onPress }) => {
+    const buttonTypes = useMemo(() => Object.values(ButtonType), []);
 
-  return (
-    <TouchableHighlight
-      style={[styles.button, style]}
-      underlayColor={colors.astral}
-      onPress={onPress}
-    >
-      <Text style={styles.label}>{content}</Text>
-    </TouchableHighlight>
-  );
-});
+    if (!buttonTypes.includes(type)) {
+      return null;
+    }
+
+    return (
+      <TouchableOpacity
+        accessibilityRole="button"
+        activeOpacity={BUTTON_ACTIVE_OPACITY}
+        style={StyleSheet.flatten([styles[type], containerStyle])}
+        onPress={onPress}
+      >
+        <>
+          {!iconRight && icon}
+          <Text style={buttonStyle}>{title}</Text>
+          {iconRight && icon}
+        </>
+      </TouchableOpacity>
+    );
+  }
+);
 
 Button.displayName = 'Button';

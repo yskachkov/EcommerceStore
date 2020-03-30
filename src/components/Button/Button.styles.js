@@ -2,8 +2,16 @@ import { StyleSheet } from 'react-native';
 
 import { colors } from 'src/assets/styles/colors';
 
+const commonButtonStyles = {
+  flexDirection: 'row',
+  padding: 10,
+  justifyContent: 'center',
+  alignItems: 'center'
+};
+
 export default StyleSheet.create({
-  button: {
+  solid: {
+    ...commonButtonStyles,
     shadowColor: colors.black,
     shadowOffset: {
       width: 0,
@@ -12,14 +20,15 @@ export default StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 3,
-    padding: 10,
-    alignItems: 'center',
     backgroundColor: colors.bostonBlue
   },
-  label: {
-    textTransform: 'uppercase',
-    color: colors.white,
-    fontWeight: '600',
-    fontSize: 18
+  clear: {
+    ...commonButtonStyles
+  },
+  outline: {
+    ...commonButtonStyles,
+    borderWidth: 1,
+    borderStyle: 'solid',
+    borderColor: colors.bostonBlue
   }
 });
