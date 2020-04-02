@@ -1,8 +1,8 @@
 import React, { memo } from 'react';
 import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
+import { ScreenName } from 'src/constants/screenNames';
 import { colors } from 'src/assets/styles/colors';
 import { GradientView, Link, Button, Divider } from 'src/components';
 import FormInput from 'src/components/Forms/Input';
@@ -12,7 +12,6 @@ export const SignUp = memo(({ handleSubmit }) => (
   <GradientView style={styles.gradientView}>
     <KeyboardAwareScrollView>
       <Divider size={7} color={colors.bostonBlue} />
-      <Icon name="arrow-left" size={30} color={colors.tundora} style={styles.backIcon} />
       <View style={styles.container}>
         <Text style={styles.title}>Ecommerce Store</Text>
         <FormInput name="fullName" placeholder="Full Name" style={styles.input} />
@@ -36,4 +35,4 @@ export const SignUp = memo(({ handleSubmit }) => (
   </GradientView>
 ));
 
-SignUp.displayName = 'SignUp';
+SignUp.displayName = ScreenName.SignUp;

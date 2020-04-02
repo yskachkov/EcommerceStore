@@ -6,12 +6,6 @@ export default StyleSheet.create({
   gradientView: {
     flex: 1
   },
-  backIcon: {
-    width: 60,
-    height: 50,
-    paddingVertical: 10,
-    paddingHorizontal: 15
-  },
   container: {
     paddingTop: 70,
     paddingHorizontal: 25,

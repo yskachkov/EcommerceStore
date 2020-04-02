@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 
 import { ProductList } from 'src/components';
-import styles from './SectionContent.styles';
+import styles from './ProductSectionContent.styles';
 
-export const SectionContent = memo(props => (
+export const ProductSectionContent = memo(props => (
   <ProductList
     {...props}
     numColumns={2}
@@ -12,4 +12,4 @@ export const SectionContent = memo(props => (
   />
 ));
 
-SectionContent.displayName = 'SectionContent';
+ProductSectionContent.displayName = 'ProductSectionContent';

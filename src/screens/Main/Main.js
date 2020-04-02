@@ -1,14 +1,28 @@
-import React, { memo } from 'react';
+import React, { memo, useCallback } from 'react';
 
-import { dummyCategories, dummySections } from './';
+import { dummyCategories, dummySections, dummyProducts } from './';
+import { ScreenName } from 'src/constants/screenNames';
 import { ProductSectionList } from 'src/components';
-import { MainHeader } from './components';
+import { ProductListHeader } from './components';
 
-export const Main = memo(({ productCategories = dummyCategories, sections = dummySections }) => (
-  <ProductSectionList
-    ListHeaderComponent={<MainHeader productCategories={productCategories} />}
-    sections={sections}
-  />
-));
+export const Main = memo(
+  ({ productCategories = dummyCategories, sections = dummySections, navigation: { navigate } }) => {
+    const handleProductPress = useCallback(
+      productId =>
+        navigate(ScreenName.ProductDetails, {
+          product: dummyProducts.find(({ id }) => productId === id)
+        }),
+      [navigate]
+    );
 
-Main.displayName = 'Main';
+    return (
+      <ProductSectionList
+        ListHeaderComponent={<ProductListHeader productCategories={productCategories} />}
+        sections={sections}
+        onProductPress={handleProductPress}
+      />
+    );
+  }
+);
+
+Main.displayName = ScreenName.Main;

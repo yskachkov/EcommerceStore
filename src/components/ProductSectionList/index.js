@@ -3,17 +3,19 @@ import { SectionList } from 'react-native';
 import get from 'lodash/get';
 import first from 'lodash/first';
 
-import { SectionHeader, SectionContent } from './components';
+import { ProductSectionHeader, ProductSectionContent } from './components';
 
-export const ProductSectionList = memo(({ keyProperty = 'id', ...props }) => {
+export const ProductSectionList = memo(({ keyProperty = 'id', onProductPress, ...props }) => {
   const renderSectionHeader = useCallback(
-    ({ section: { title } }) => <SectionHeader title={title} />,
+    ({ section: { title } }) => <ProductSectionHeader title={title} />,
     []
   );
 
   const renderSectionItems = useCallback(
-    ({ item: sectionItems }) => <SectionContent data={sectionItems} />,
-    []
+    ({ item: sectionItems }) => (
+      <ProductSectionContent data={sectionItems} onProductPress={onProductPress} />
+    ),
+    [onProductPress]
   );
 
   const keyExtractor = useCallback(item => get(first(item), keyProperty), [keyProperty]);

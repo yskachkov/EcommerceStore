@@ -11,4 +11,4 @@ const mapActionCreatorsToProps = {
   ...textActions
 };
 
-export default connect(mapStateToProps, mapActionCreatorsToProps);
+export const textConnector = connect(mapStateToProps, mapActionCreatorsToProps);

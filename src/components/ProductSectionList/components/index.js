@@ -1,2 +1,2 @@
-export * from './SectionHeader';
-export * from './SectionContent';
+export * from './ProductSectionHeader';
+export * from './ProductSectionContent';

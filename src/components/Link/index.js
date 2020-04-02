@@ -1,12 +1,11 @@
 import React, { memo } from 'react';
-import { StyleSheet, Text } from 'react-native';
+import { StyleSheet } from 'react-native';
 
+import { Button } from 'src/components';
 import styles from './Link.styles.js';
 
 export const Link = memo(({ children, style = {}, ...props }) => (
-  <Text {...props} accessibilityRole="link" style={StyleSheet.flatten([styles.link, style])}>
-    {children}
-  </Text>
+  <Button {...props} type="clear" buttonStyle={StyleSheet.flatten([styles.link, style])} />
 ));
 
 Link.displayName = 'Link';

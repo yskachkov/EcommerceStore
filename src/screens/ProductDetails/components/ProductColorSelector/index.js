@@ -29,7 +29,7 @@ export const ProductColorSelector = memo(({ options, containerStyle, optionStyle
             key={option}
             value={option}
             active={isSelected}
-            style={optionStyle}
+            style={StyleSheet.flatten([styles.option, optionStyle])}
             onSelect={handleOptionChange}
           />
         );

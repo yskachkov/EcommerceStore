@@ -1,3 +1,5 @@
+import { ScreenName } from 'src/constants/screenNames';
+
 export const formikConfig = {
   mapPropsToValues: () => ({ fullName: '', email: '', password: '', confirmPassword: '' }),
   handleSubmit: (values, { setSubmitting }) => {
@@ -5,5 +7,5 @@ export const formikConfig = {
 
     setSubmitting(false);
   },
-  displayName: 'SignUpForm'
+  displayName: `${ScreenName.SignUp}Form`
 };

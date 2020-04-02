@@ -1,24 +1,21 @@
 import React, { memo } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 
-import { dummyImages, dummyProduct } from './';
+import { ScreenName } from 'src/constants/screenNames';
 import { colors } from 'src/assets/styles/colors';
-import { Header, ImageSwiper, Divider, Button, LikeButton } from 'src/components';
+import { ImageSwiper, Divider, Button, LikeButton } from 'src/components';
 import { ProductSection, ProductColorSelector } from './components';
 import styles from './ProductDetails.styles';
 
 export const ProductDetails = memo(
   ({
-    images = dummyImages,
-    title = dummyProduct.title,
-    oldPrice = dummyProduct.oldPrice,
-    price = dummyProduct.price,
-    discount = dummyProduct.discount,
-    colors: availableColors = dummyProduct.colors,
-    description = dummyProduct.description
+    route: {
+      params: {
+        product: { title, oldPrice, price, discount, colors: availableColors, description, images }
+      }
+    }
   }) => (
     <ScrollView>
-      <Header withSearch withCart />
       <View style={styles.mainInformationContainer}>
         <ImageSwiper height={320} data={images} />
         <Text style={styles.title}>{title}</Text>
@@ -54,4 +51,4 @@ export const ProductDetails = memo(
   )
 );
 
-ProductDetails.displayName = 'ProductDetails';
+ProductDetails.displayName = ScreenName.ProductDetails;

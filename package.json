@@ -9,18 +9,24 @@
     "clean-start": "react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint .",
-    "prettier": "prettier \"src/**/*.{js,jsx,test.js,spec.js}\" --write",
-    "sync-reactotron": "adb reverse tcp:9090 tcp:9090"
+    "prettier": "prettier \"src/**/*.{js,jsx,test.js,spec.js}\" --write"
   },
   "dependencies": {
+    "@react-native-community/masked-view": "0.1.7",
+    "@react-navigation/native": "5.1.4",
+    "@react-navigation/stack": "5.2.9",
     "@reduxjs/toolkit": "1.2.5",
     "axios": "0.19.2",
     "formik": "2.1.4",
     "lodash": "4.17.15",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-gesture-handler": "1.6.1",
     "react-native-keyboard-aware-scroll-view": "0.9.1",
     "react-native-linear-gradient": "2.5.6",
+    "react-native-reanimated": "1.7.1",
+    "react-native-safe-area-context": "0.7.3",
+    "react-native-screens": "2.4.0",
     "react-native-swiper": "1.6.0-nightly.5",
     "react-native-vector-icons": "6.6.0",
     "react-redux": "7.2.0",
@@ -38,15 +44,22 @@
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "husky": "^4.2.3",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "^24.9.0",
     "lint-staged": "^10.0.8",
     "metro-react-native-babel-preset": "^0.56.0",
     "prettier": "^1.19.1",
-    "react-test-renderer": "16.9.0",
-    "reactotron-react-native": "^4.0.3"
+    "react-test-renderer": "16.9.0"
   },
   "jest": {
-    "preset": "react-native"
+    "preset": "react-native",
+    "setupFiles": [
+      "./node_modules/react-native-gesture-handler/jestSetup.js",
+      "./src/setupTests.js"
+    ],
+    "moduleNameMapper": {
+      ".+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "identity-obj-proxy"
+    }
   },
   "husky": {
     "hooks": {

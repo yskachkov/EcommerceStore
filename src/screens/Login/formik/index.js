@@ -1,3 +1,4 @@
+import { ScreenName } from 'src/constants/screenNames';
 import { httpService } from 'src/services/httpService';
 
 export const formikConfig = {
@@ -23,5 +24,5 @@ export const formikConfig = {
 
     setSubmitting(false);
   },
-  displayName: 'LoginForm'
+  displayName: `${ScreenName.Login}Form`
 };

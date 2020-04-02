@@ -2,9 +2,9 @@ import React, { memo } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
 import { Button } from 'src/components';
-import styles from './SectionHeader.styles';
+import styles from './ProductSectionHeader.styles';
 
-export const SectionHeader = memo(({ title, style }) => (
+export const ProductSectionHeader = memo(({ title, style }) => (
   <View style={StyleSheet.flatten([styles.container, style])}>
     <Text style={styles.title}>{title}</Text>
     <Button
@@ -15,4 +15,4 @@ export const SectionHeader = memo(({ title, style }) => (
   </View>
 ));
 
-SectionHeader.displayName = 'SectionHeader';
+ProductSectionHeader.displayName = 'ProductSectionHeader';

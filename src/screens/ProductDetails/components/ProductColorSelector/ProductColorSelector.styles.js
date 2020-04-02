@@ -4,5 +4,8 @@ export default StyleSheet.create({
   container: {
     flexDirection: 'row',
     flexWrap: 'wrap'
+  },
+  option: {
+    marginRight: 10
   }
 });
