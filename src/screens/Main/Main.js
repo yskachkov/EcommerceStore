@@ -10,7 +10,7 @@ export const Main = memo(
     const handleProductPress = useCallback(
       productId =>
         navigate(ScreenName.ProductDetails, {
-          product: dummyProducts.find(({ id }) => productId === id)
+          data: dummyProducts.find(({ id }) => productId === id)
         }),
       [navigate]
     );

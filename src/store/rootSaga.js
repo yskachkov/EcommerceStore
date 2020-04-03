@@ -1,7 +1,7 @@
 import { all } from 'redux-saga/effects';
 
-import { watchAsyncTextUpdate } from './text/saga';
+import { authenticationSaga } from './user/saga';
 
 export function* rootSaga() {
-  yield all([watchAsyncTextUpdate()]);
+  yield all([authenticationSaga()]);
 }

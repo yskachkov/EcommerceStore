@@ -1,7 +1,10 @@
 import axios, { CancelToken } from 'axios';
+import { APP_URL } from 'react-native-dotenv';
 import { CANCEL } from 'redux-saga';
 
-const httpClient = axios.create();
+const httpClient = axios.create({
+  baseURL: APP_URL
+});
 
 export const httpService = params => {
   const { token: cancelToken, cancel } = CancelToken.source();

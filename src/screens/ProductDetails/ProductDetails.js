@@ -11,7 +11,7 @@ export const ProductDetails = memo(
   ({
     route: {
       params: {
-        product: { title, oldPrice, price, discount, colors: availableColors, description, images }
+        data: { title, oldPrice, price, discount, colors: availableColors, description, images }
       }
     }
   }) => (

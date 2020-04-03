@@ -1,17 +1,14 @@
 import React, { memo, useCallback } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { ScreenName } from 'src/constants/screenNames';
-import { colors } from 'src/assets/styles/colors';
-import { GradientView, Link, Button, Divider } from 'src/components';
+import { GradientView, Link, Button } from 'src/components';
 import FormInput from 'src/components/Forms/Input';
 import styles from './Login.styles';
 
 export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
   const navigateToSignUp = useCallback(() => navigate(ScreenName.SignUp), [navigate]);
-  const handleSkipLogin = useCallback(() => navigate(ScreenName.Main), [navigate]);
 
   return (
     <GradientView style={styles.gradientView}>
@@ -38,17 +35,6 @@ export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
             onPress={navigateToSignUp}
           />
         </View>
-        <Divider size={3} color={colors.white} />
-        <Button
-          type="clear"
-          title="Skip login"
-          iconRight
-          icon={
-            <Icon name="arrow-right" size={25} color={colors.bostonBlue} style={styles.skipIcon} />
-          }
-          buttonStyle={StyleSheet.flatten([styles.button, styles.skipLoginButton])}
-          onPress={handleSkipLogin}
-        />
       </KeyboardAwareScrollView>
     </GradientView>
   );

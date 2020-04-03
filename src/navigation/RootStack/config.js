@@ -23,7 +23,7 @@ export const navigatorScreenOptions = {
   )
 };
 
-export const navigatorScreenConfigs = [
+export const authenticationScreenConfigs = [
   {
     name: ScreenName.Login,
     component: LoginScreen,
@@ -41,7 +41,10 @@ export const navigatorScreenConfigs = [
         headerTransparent: true
       }
     }
-  },
+  }
+];
+
+const mainScreenConfigs = [
   {
     name: ScreenName.Main,
     component: MainScreen,
@@ -70,3 +73,6 @@ export const navigatorScreenConfigs = [
     }
   }
 ];
+
+export const getScreenConfigs = isAuthenticated =>
+  isAuthenticated ? mainScreenConfigs : authenticationScreenConfigs;
