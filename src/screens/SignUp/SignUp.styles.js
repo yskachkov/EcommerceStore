@@ -6,8 +6,11 @@ export default StyleSheet.create({
   gradientView: {
     flex: 1
   },
+  backButton: {
+    alignSelf: 'flex-start'
+  },
   container: {
-    paddingTop: 70,
+    paddingTop: 50,
     paddingHorizontal: 25,
     paddingBottom: 120
   },

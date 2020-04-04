@@ -8,7 +8,15 @@ import { Input } from 'src/components/Forms/Input';
 import styles from './Header.styles';
 
 export const Header = memo(
-  ({ transparent, title, withSearch, withSearchBar, withCart, onBackButtonPress }) => (
+  ({
+    transparent,
+    title,
+    withSearch,
+    withSearchBar,
+    withCart,
+    onBackButtonPress,
+    onDrawerToggle
+  }) => (
     <View
       style={StyleSheet.flatten([
         styles.container,
@@ -21,6 +29,7 @@ export const Header = memo(
             type="clear"
             icon={<Icon name="bars" size={30} color={colors.white} />}
             containerStyle={styles.iconButton}
+            onPress={onDrawerToggle}
           />
         ) : (
           <BackButton

@@ -2,5 +2,9 @@ export const ScreenName = {
   Login: 'Login',
   SignUp: 'SignUp',
   Main: 'Main',
-  ProductDetails: 'ProductDetails'
+  ProductDetails: 'ProductDetails',
+  Profile: 'Profile',
+  WishList: 'WishList',
+  Cart: 'Cart',
+  Orders: 'Orders'
 };

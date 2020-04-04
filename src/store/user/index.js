@@ -10,9 +10,13 @@ const { reducer, actions } = createSlice({
       ...state,
       token
     }),
-    toggleUserLoading: state => ({
+    userLoadingStart: state => ({
       ...state,
-      loading: !state.loading
+      loading: true
+    }),
+    userLoadingEnd: state => ({
+      ...state,
+      loading: false
     })
   }
 });

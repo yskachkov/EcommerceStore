@@ -8,14 +8,14 @@ import FormInput from 'src/components/Forms/Input';
 import styles from './Login.styles';
 
 export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
-  const navigateToSignUp = useCallback(() => navigate(ScreenName.SignUp), [navigate]);
+  const redirectToSignUpScreen = useCallback(() => navigate(ScreenName.SignUp), [navigate]);
 
   return (
     <GradientView style={styles.gradientView}>
       <KeyboardAwareScrollView>
         <View style={styles.container}>
           <Text style={styles.title}>Ecommerce Store</Text>
-          <FormInput name="login" placeholder="Email or Login" style={styles.input} />
+          <FormInput name="login" placeholder="Login" style={styles.input} />
           <FormInput
             secureTextEntry
             name="password"
@@ -32,7 +32,7 @@ export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
           <Link
             title="New here? Sign Up"
             containerStyle={styles.signUpLink}
-            onPress={navigateToSignUp}
+            onPress={redirectToSignUpScreen}
           />
         </View>
       </KeyboardAwareScrollView>

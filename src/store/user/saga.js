@@ -22,14 +22,14 @@ function* signIn({ payload: { login, password } }) {
 
     yield call([Authentication, 'updateToken'], token);
   } catch (error) {
-    const errorMessage = get(error, 'data.error', `Sign-In error:\n${error}`);
+    const errorMessage = get(error, 'response.data.error', `Sign-In error:\n${error}`);
 
     yield call(alert, errorMessage);
   }
 }
 
 function* authenticate() {
-  yield put(userActions.toggleUserLoading());
+  yield put(userActions.userLoadingStart());
 
   try {
     const userToken = yield call([Authentication, 'restoreToken']);
@@ -46,11 +46,11 @@ function* authenticate() {
       })
     );
   } catch (error) {
-    const errorMessage = get(error, 'data.error', `Authentication error:\n${error}`);
+    const errorMessage = get(error, 'response.data.error', `Authentication error:\n${error}`);
 
-    yield call(alert, errorMessage);
+    yield call([console, 'log'], errorMessage);
   } finally {
-    yield put(userActions.toggleUserLoading());
+    yield put(userActions.userLoadingEnd());
   }
 }
 

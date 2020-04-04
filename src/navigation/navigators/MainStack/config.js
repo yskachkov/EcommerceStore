@@ -1,8 +1,8 @@
 import React from 'react';
 
 import { ScreenName } from 'src/constants/screenNames';
-import { LoginScreen, SignUpScreen, MainScreen, ProductDetailsScreen } from 'src/screens';
-import { Header } from 'src/components/Header';
+import { MainScreen, ProductDetailsScreen } from 'src/screens';
+import { Header } from 'src/components';
 
 export const navigatorScreenOptions = {
   header: ({
@@ -12,39 +12,19 @@ export const navigatorScreenOptions = {
         options: { title, headerTransparent }
       }
     },
-    navigation: { goBack }
+    navigation: { goBack, toggleDrawer }
   }) => (
     <Header
       {...headerProps}
       title={title}
       transparent={headerTransparent}
       onBackButtonPress={goBack}
+      onDrawerToggle={toggleDrawer}
     />
   )
 };
 
-export const authenticationScreenConfigs = [
-  {
-    name: ScreenName.Login,
-    component: LoginScreen,
-    props: {
-      options: {
-        headerShown: false
-      }
-    }
-  },
-  {
-    name: ScreenName.SignUp,
-    component: SignUpScreen,
-    props: {
-      options: {
-        headerTransparent: true
-      }
-    }
-  }
-];
-
-const mainScreenConfigs = [
+export const navigatorScreenConfigs = [
   {
     name: ScreenName.Main,
     component: MainScreen,
@@ -73,6 +53,3 @@ const mainScreenConfigs = [
     }
   }
 ];
-
-export const getScreenConfigs = isAuthenticated =>
-  isAuthenticated ? mainScreenConfigs : authenticationScreenConfigs;

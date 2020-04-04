@@ -2,6 +2,7 @@ export const colors = {
   black: '#000000',
   mineShaft: '#333333',
   tundora: '#4a4a4a',
+  doveGray: '#737373',
   grey: '#808080',
   silverChalice: '#9e9e9e',
   alto: '#dedede',
