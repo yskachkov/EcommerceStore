@@ -48,7 +48,7 @@ function* authenticate() {
   } catch (error) {
     const errorMessage = get(error, 'response.data.error', `Authentication error:\n${error}`);
 
-    yield call([console, 'log'], errorMessage);
+    yield call(console.log, errorMessage);
   } finally {
     yield put(userActions.userLoadingEnd());
   }

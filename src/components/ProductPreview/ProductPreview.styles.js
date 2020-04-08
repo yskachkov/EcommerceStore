@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  list: {
-    padding: 20
+  previewList: {
+    paddingVertical: 20,
+    paddingHorizontal: 15
+  },
+  previewItem: {
+    marginRight: 15
   }
 });

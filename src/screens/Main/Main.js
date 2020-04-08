@@ -1,28 +1,50 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 
-import { dummyCategories, dummySections, dummyProducts } from './';
 import { ScreenName } from 'src/constants/screenNames';
+import { PRODUCT_DISPLAY_LIMIT } from './constants';
 import { ProductSectionList } from 'src/components';
 import { ProductListHeader } from './components';
 
-export const Main = memo(
-  ({ productCategories = dummyCategories, sections = dummySections, navigation: { navigate } }) => {
-    const handleProductPress = useCallback(
-      productId =>
-        navigate(ScreenName.ProductDetails, {
-          data: dummyProducts.find(({ id }) => productId === id)
-        }),
-      [navigate]
-    );
+export const Main = memo(({ categories, sections, fetchData, navigation: { navigate } }) => {
+  useEffect(() => {
+    fetchData({
+      sectionLimit: PRODUCT_DISPLAY_LIMIT
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-    return (
-      <ProductSectionList
-        ListHeaderComponent={<ProductListHeader productCategories={productCategories} />}
-        sections={sections}
-        onProductPress={handleProductPress}
-      />
-    );
-  }
-);
+  const handleViewAllPress = useCallback(
+    categoryId => {
+      const { name } = categories.get(categoryId);
+
+      navigate(ScreenName.CategoryProducts, {
+        title: name,
+        data: {
+          categoryId
+        }
+      });
+    },
+    [categories, navigate]
+  );
+
+  const handleProductPress = useCallback(
+    productId =>
+      navigate(ScreenName.ProductDetails, {
+        data: {
+          productId
+        }
+      }),
+    [navigate]
+  );
+
+  return (
+    <ProductSectionList
+      ListHeaderComponent={<ProductListHeader categories={categories} />}
+      sections={sections}
+      onProductPress={handleProductPress}
+      onViewAllPress={handleViewAllPress}
+    />
+  );
+});
 
 Main.displayName = ScreenName.Main;

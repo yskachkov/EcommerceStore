@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { ScreenName } from 'src/constants/screenNames';
 import { colors } from 'src/assets/styles/colors';
-import { GradientView, Link, Button, Divider, BackButton } from 'src/components';
+import { GradientView, Divider, AndroidElement, BackButton, Link, Button } from 'src/components';
 import FormInput from 'src/components/Forms/Input';
 import styles from './SignUp.styles';
 
@@ -15,7 +15,9 @@ export const SignUp = memo(({ handleSubmit, navigation: { navigate, goBack } }) 
     <GradientView style={styles.gradientView}>
       <KeyboardAwareScrollView>
         <Divider size={7} color={colors.bostonBlue} />
-        <BackButton containerStyle={styles.backButton} onPress={goBack} />
+        <AndroidElement>
+          <BackButton containerStyle={styles.backButton} onPress={goBack} />
+        </AndroidElement>
         <View style={styles.container}>
           <Text style={styles.title}>Ecommerce Store</Text>
           <FormInput name="fullName" placeholder="Full Name" style={styles.input} />

@@ -5,6 +5,7 @@ module.exports = {
     "jest": true
   },
   rules: {
-    'comma-dangle': 'off'
+    'comma-dangle': 'off',
+    'no-shadow': 'off'
   },
 };

@@ -5,7 +5,8 @@ import { colors } from 'src/assets/styles/colors';
 export default StyleSheet.create({
   mainInformationContainer: {
     paddingVertical: 25,
-    paddingHorizontal: 30
+    paddingHorizontal: 30,
+    backgroundColor: colors.white
   },
   title: {
     fontSize: 20
@@ -44,7 +45,8 @@ export default StyleSheet.create({
   },
   wishListButtonContainer: {
     borderTopWidth: 0.5,
-    borderTopColor: colors.bostonBlue
+    borderTopColor: colors.bostonBlue,
+    backgroundColor: colors.white
   },
   button: {
     fontSize: 16

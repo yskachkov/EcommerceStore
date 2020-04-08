@@ -6,5 +6,6 @@ export const ScreenName = {
   Profile: 'Profile',
   WishList: 'WishList',
   Cart: 'Cart',
-  Orders: 'Orders'
+  Orders: 'Orders',
+  CategoryProducts: 'CategoryProducts'
 };

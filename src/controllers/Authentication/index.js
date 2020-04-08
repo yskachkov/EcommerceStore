@@ -26,6 +26,10 @@ class AuthenticationController {
     return AsyncStorage.getItem('userToken');
   }
 
+  clearToken() {
+    return AsyncStorage.removeItem('userToken');
+  }
+
   authenticate(token) {
     const authenticationData = new FormData();
 

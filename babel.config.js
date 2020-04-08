@@ -6,6 +6,7 @@ module.exports = {
       {
         root: ['.']
       }
-    ]
+    ],
+    '@babel/plugin-proposal-optional-chaining'
   ]
 };

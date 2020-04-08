@@ -1,26 +1,35 @@
-import React, { memo } from 'react';
+import React, { memo, useMemo } from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 
 import styles from './ProductCard.styles';
 
 export const ProductCard = memo(
-  ({ title, price, oldPrice, discount, containerStyle, imageStyle, onPress }) => (
-    <TouchableOpacity
-      style={StyleSheet.flatten([styles.container, containerStyle])}
-      onPress={onPress}
-    >
-      <Image
-        source={{ uri: `https://via.placeholder.com/80x100/318CBF/FFFFFF/?text=${title[0]}` }}
-        style={StyleSheet.flatten([styles.image, imageStyle])}
-      />
-      <Text>{title}</Text>
-      <View style={styles.infoContainer}>
-        <Text>$ {price} </Text>
-        {oldPrice && <Text style={styles.oldPrice}>$ {oldPrice} </Text>}
-        {discount && <Text style={styles.discount}>{discount}% Off</Text>}
-      </View>
-    </TouchableOpacity>
-  )
+  ({ title, imageUri, price, oldPrice, containerStyle, imageStyle, titleStyle, onPress }) => {
+    const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri]);
+
+    return (
+      <TouchableOpacity
+        style={StyleSheet.flatten([styles.container, containerStyle])}
+        onPress={onPress}
+      >
+        <Image source={imageSource} style={StyleSheet.flatten([styles.image, imageStyle])} />
+        <View>
+          <Text numberOfLines={2} style={StyleSheet.flatten([styles.title, titleStyle])}>
+            {title}
+          </Text>
+          <View style={styles.priceContainer}>
+            <Text style={styles.price}>$ {price}</Text>
+            {oldPrice && (
+              <>
+                <Text style={styles.oldPrice}>$ {oldPrice}</Text>
+                <Text style={styles.discount}>Sale</Text>
+              </>
+            )}
+          </View>
+        </View>
+      </TouchableOpacity>
+    );
+  }
 );
 
 ProductCard.displayName = 'ProductCard';

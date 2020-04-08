@@ -4,14 +4,12 @@ import { colors } from 'src/assets/styles/colors';
 
 export default StyleSheet.create({
   container: {
-    paddingVertical: 15,
-    paddingHorizontal: 20,
+    flex: 1,
+    paddingTop: 30,
+    paddingHorizontal: 5,
     backgroundColor: colors.white
   },
-  title: {
-    marginBottom: 5,
-    color: colors.bostonBlue,
-    fontWeight: '700',
-    fontSize: 20
+  productImage: {
+    marginRight: 50
   }
 });

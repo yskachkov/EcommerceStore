@@ -1,33 +1,42 @@
 import React, { memo, useCallback } from 'react';
-import { FlatList, View } from 'react-native';
+import { View, FlatList } from 'react-native';
 
 import { ProductCard } from 'src/components';
-import styles from './ProductList.styles.js';
 
 export const ProductList = memo(
-  ({ keyProperty = 'id', containerStyle, onProductPress, ...props }) => {
+  ({
+    keyProperty = 'id',
+    containerStyle,
+    listItemStyle,
+    productImageStyle,
+    onProductPress,
+    ...props
+  }) => {
     const renderItem = useCallback(
-      ({ item: { id, title, price, oldPrice, discount } }) => {
+      ({ item: { id, name, price, oldPrice, thumb } }) => {
         const handleProductCardPress = () => onProductPress(id);
 
         return (
           <ProductCard
-            title={title}
+            key={name}
+            title={name}
             price={price}
             oldPrice={oldPrice}
-            discount={discount}
-            containerStyle={styles.productCardContainer}
-            imageStyle={styles.productCardImage}
+            imageUri={thumb}
+            containerStyle={listItemStyle}
+            imageStyle={productImageStyle}
             onPress={handleProductCardPress}
           />
         );
       },
-      [onProductPress]
+      [listItemStyle, onProductPress, productImageStyle]
     );
+
+    const keyExtractor = useCallback(item => item[keyProperty], [keyProperty]);
 
     return (
       <View style={containerStyle}>
-        <FlatList {...props} renderItem={renderItem} keyExtractor={item => item[keyProperty]} />
+        <FlatList {...props} renderItem={renderItem} keyExtractor={keyExtractor} />
       </View>
     );
   }

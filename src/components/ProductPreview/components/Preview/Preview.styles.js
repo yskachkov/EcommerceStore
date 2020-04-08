@@ -4,7 +4,7 @@ import { colors } from 'src/assets/styles/colors';
 
 export default StyleSheet.create({
   container: {
-    marginRight: 40,
+    width: 80,
     alignItems: 'center'
   },
   image: {
@@ -15,6 +15,7 @@ export default StyleSheet.create({
     borderColor: colors.black
   },
   text: {
-    fontSize: 14
+    fontSize: 14,
+    textAlign: 'center'
   }
 });

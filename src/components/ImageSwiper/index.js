@@ -1,21 +1,33 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo, useMemo, useCallback } from 'react';
 import Swiper from 'react-native-swiper';
 
 import { colors } from 'src/assets/styles/colors';
 import { SwiperSlide } from './components';
+import styles from './ImageSwiper.styles';
 
 export const ImageSwiper = memo(
   ({
-    data,
+    images,
     renderItem,
     slideContainerStyle,
     activeDotColor = colors.bostonBlue,
-    keyExtractor = item => item.id,
+    keyExtractor = item => item.source.uri,
     ...props
   }) => {
+    const slideImages = useMemo(
+      () =>
+        images.map(uri => ({
+          source: {
+            uri
+          },
+          style: styles.slideImage
+        })),
+      [images]
+    );
+
     const renderSlides = useCallback(
-      (slides, renderer) =>
-        slides.map(imageData => {
+      (images, renderer) =>
+        images.map(imageData => {
           const key = keyExtractor(imageData);
 
           return <SwiperSlide key={key} content={imageData} renderer={renderer} />;
@@ -25,7 +37,7 @@ export const ImageSwiper = memo(
 
     return (
       <Swiper {...props} activeDotColor={activeDotColor}>
-        {renderSlides(data, renderItem)}
+        {renderSlides(slideImages, renderItem)}
       </Swiper>
     );
   }

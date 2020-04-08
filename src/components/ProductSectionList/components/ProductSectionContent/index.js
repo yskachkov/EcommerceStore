@@ -8,6 +8,8 @@ export const ProductSectionContent = memo(props => (
     {...props}
     numColumns={2}
     containerStyle={styles.listContainer}
+    listItemStyle={styles.productListItem}
+    productImageStyle={styles.productImage}
     columnWrapperStyle={styles.listColumnWrapper}
   />
 ));
