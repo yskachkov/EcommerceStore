@@ -4,7 +4,9 @@ import get from 'lodash/get';
 import { Products } from 'src/controllers';
 import { productActions } from './';
 
-function* fetchData({ payload: { productId } }) {
+function* fetchProductDetails({ payload: { productId } }) {
+  yield put(productActions.startLoading());
+
   try {
     const {
       data: { thumbnail, name, price, special, description }
@@ -25,10 +27,11 @@ function* fetchData({ payload: { productId } }) {
     const errorMessage = get(error, 'response.data.error', `Product fetchData error:\n${error}`);
 
     yield call(alert, errorMessage);
+  } finally {
+    yield put(productActions.endLoading());
   }
 }
 
 export function* productSaga() {
-  // TODO: loading
-  yield takeLatest(productActions.fetchData.type, fetchData);
+  yield takeLatest(productActions.fetchProductDetails.type, fetchProductDetails);
 }

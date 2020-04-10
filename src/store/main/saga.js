@@ -2,64 +2,94 @@ import { takeLatest, call, put, select, all } from 'redux-saga/effects';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
 import unescape from 'lodash/unescape';
+import last from 'lodash/last';
 
 import { Products } from 'src/controllers';
-import { getCategories } from './selectors';
+import { Entities } from './config';
+import { getCategoryIds, getFilter } from './selectors';
 import { mainActions } from './';
 
 function* fetchCategories() {
+  const entity = Entities.Categories;
+
+  yield put(
+    mainActions.startLoading({
+      entity
+    })
+  );
+
   try {
     const {
-      data: { subcategories }
+      data: { subcategories: categories }
     } = yield call([Products, 'getCategoriesList']);
 
-    const categories = subcategories.reduce((categoriesList, { category_id: id, name, thumb }) => {
-      categoriesList.set(id, {
-        id,
-        thumb,
-        name: unescape(name)
-      });
+    const categoriesById = {};
+    const allCategories = [];
 
-      return categoriesList;
-    }, new Map());
+    categories.forEach(({ category_id: id, name, thumb }) => {
+      categoriesById[id] = {
+        id,
+        thumb: `http:${thumb}`,
+        name: unescape(name)
+      };
+
+      allCategories.push(id);
+    });
 
     yield put(
-      mainActions.updateCategories({
-        data: categories
+      mainActions.updateData({
+        entity,
+        data: {
+          byId: categoriesById,
+          allIds: allCategories
+        }
       })
     );
   } catch (error) {
     const errorMessage = get(error, 'response.data.error', `Main fetchCategories error:\n${error}`);
 
     yield call(alert, errorMessage);
+  } finally {
+    yield put(
+      mainActions.endLoading({
+        entity
+      })
+    );
   }
 }
 
-function* fetchCategoryProducts({ categoryId, limit }) {
+function* fetchCategoryProducts({ categoryId, productLimit }) {
   try {
     const {
-      data: { rows }
+      data: { rows: products }
     } = yield call([Products, 'getCategoryProducts'], {
       category_id: categoryId,
-      rows: limit
+      rows: productLimit
     });
 
-    const products = rows.reduce((productList, { id, cell: { name, price, special, thumb } }) => {
-      productList.set(id, {
+    const productsById = {};
+    const allProducts = [];
+
+    products.forEach(({ id, cell: { name, price, special, thumb } }) => {
+      productsById[id] = {
         id,
         name,
         price: special || price,
         oldPrice: special ? price : null,
         thumb: `http:${thumb}`,
         categoryId
-      });
+      };
 
-      return productList;
-    }, new Map());
+      allProducts.push(id);
+    });
 
     yield put(
-      mainActions.updateProducts({
-        data: products
+      mainActions.updateData({
+        entity: Entities.Products,
+        data: {
+          byId: productsById,
+          allIds: allProducts
+        }
       })
     );
   } catch (error) {
@@ -73,31 +103,87 @@ function* fetchCategoryProducts({ categoryId, limit }) {
   }
 }
 
-function* fetchProducts(limit) {
-  const categories = yield select(getCategories);
+function* fetchProducts({ payload: { categorySectionsLimit, sectionProductLimit: productLimit } }) {
+  const entity = Entities.Products;
+  const state = yield select();
 
-  if (isEmpty(categories)) {
-    return;
-  }
+  const allCategoryIds = getCategoryIds(state);
+  const { nextCategoryIds } = getFilter(state);
 
-  const productCategoryIds = [...categories.values()].map(({ id }) => id);
+  const isNextCategoryIdsEmpty = isEmpty(nextCategoryIds);
+  const categoryIds = isNextCategoryIdsEmpty
+    ? allCategoryIds.slice(0, categorySectionsLimit)
+    : nextCategoryIds;
+
+  yield put(
+    mainActions.startLoading({
+      entity
+    })
+  );
 
   yield all(
-    productCategoryIds.map(categoryId =>
+    categoryIds.map(categoryId =>
       call(fetchCategoryProducts, {
         categoryId,
-        limit
+        productLimit
       })
     )
   );
+
+  yield put(
+    mainActions.endLoading({
+      entity
+    })
+  );
+
+  const nextStartCategoryIndex = allCategoryIds.indexOf(last(nextCategoryIds)) + 1;
+
+  const nextCategoriesSliceStartIndex = isNextCategoryIdsEmpty
+    ? categorySectionsLimit
+    : nextStartCategoryIndex;
+  const nextCategoriesSliceEndIndex = isNextCategoryIdsEmpty
+    ? categorySectionsLimit * 2
+    : nextStartCategoryIndex + categorySectionsLimit;
+
+  yield put(
+    mainActions.updateFilter({
+      nextCategoryIds: allCategoryIds.slice(
+        nextCategoriesSliceStartIndex,
+        nextCategoriesSliceEndIndex
+      )
+    })
+  );
 }
 
-function* fetchData({ payload: { sectionLimit } }) {
-  // TODO: loading
+function* fetchCategoriesData(action) {
   yield* fetchCategories();
-  yield* fetchProducts(sectionLimit);
+  yield* fetchProducts(action);
+}
+
+function* refreshCategoriesData(action) {
+  yield put(
+    mainActions.updateFilter({
+      nextCategoryIds: []
+    })
+  );
+
+  yield put(
+    mainActions.resetData({
+      entity: Entities.Categories
+    })
+  );
+
+  yield put(
+    mainActions.resetData({
+      entity: Entities.Products
+    })
+  );
+
+  yield* fetchCategoriesData(action);
 }
 
 export function* mainSaga() {
-  yield takeLatest(mainActions.fetchData.type, fetchData);
+  yield takeLatest(mainActions.fetchCategoriesData.type, fetchCategoriesData);
+  yield takeLatest(mainActions.fetchProducts.type, fetchProducts);
+  yield takeLatest(mainActions.refreshCategoriesData.type, refreshCategoriesData);
 }

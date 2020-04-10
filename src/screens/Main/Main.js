@@ -1,50 +1,103 @@
-import React, { memo, useEffect, useCallback } from 'react';
+import React, { memo, useEffect, useCallback, useMemo } from 'react';
+import { View } from 'react-native';
+import isEmpty from 'lodash/isEmpty';
 
 import { ScreenName } from 'src/constants/screenNames';
-import { PRODUCT_DISPLAY_LIMIT } from './constants';
-import { ProductSectionList } from 'src/components';
-import { ProductListHeader } from './components';
+import { pageDataConfig } from './config';
+import { CategoryList, LoadingSpinner } from 'src/components';
+import { CategoryListHeader } from './components';
+import styles from './Main.styles';
 
-export const Main = memo(({ categories, sections, fetchData, navigation: { navigate } }) => {
-  useEffect(() => {
-    fetchData({
-      sectionLimit: PRODUCT_DISPLAY_LIMIT
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+export const Main = memo(
+  ({
+    categories,
+    categoryIds,
+    categorySections,
+    loadingCategories,
+    loadingProducts,
+    fetchCategoriesData,
+    fetchProducts,
+    refreshCategoriesData,
+    navigation: { navigate }
+  }) => {
+    useEffect(() => {
+      fetchCategoriesData(pageDataConfig);
+    }, [fetchCategoriesData]);
 
-  const handleViewAllPress = useCallback(
-    categoryId => {
-      const { name } = categories.get(categoryId);
+    const previewCategories = useMemo(() => categoryIds.map(id => categories[id]), [
+      categories,
+      categoryIds
+    ]);
 
-      navigate(ScreenName.CategoryProducts, {
-        title: name,
-        data: {
-          categoryId
-        }
-      });
-    },
-    [categories, navigate]
-  );
+    const showLoadingSpinner = useMemo(() => loadingCategories || isEmpty(previewCategories), [
+      loadingCategories,
+      previewCategories
+    ]);
 
-  const handleProductPress = useCallback(
-    productId =>
-      navigate(ScreenName.ProductDetails, {
-        data: {
-          productId
-        }
-      }),
-    [navigate]
-  );
+    const handleCategoryPress = useCallback(
+      categoryId => {
+        const { name } = categories[categoryId];
 
-  return (
-    <ProductSectionList
-      ListHeaderComponent={<ProductListHeader categories={categories} />}
-      sections={sections}
-      onProductPress={handleProductPress}
-      onViewAllPress={handleViewAllPress}
-    />
-  );
-});
+        navigate(ScreenName.CategoryProducts, {
+          title: name,
+          data: {
+            categoryId
+          }
+        });
+      },
+      [categories, navigate]
+    );
+
+    const handleProductPress = useCallback(
+      productId =>
+        navigate(ScreenName.ProductDetails, {
+          data: {
+            productId
+          }
+        }),
+      [navigate]
+    );
+
+    const handleCategoryListEndReached = useCallback(() => {
+      const allSectionsHasBeenLoaded = categorySections.length === previewCategories.length;
+      const skipFetchProducts = loadingProducts || allSectionsHasBeenLoaded;
+
+      if (skipFetchProducts) {
+        return;
+      }
+
+      fetchProducts(pageDataConfig);
+    }, [categorySections, fetchProducts, loadingProducts, previewCategories]);
+
+    const handleCategoryListRefresh = useCallback(() => {
+      refreshCategoriesData(pageDataConfig);
+    }, [refreshCategoriesData]);
+
+    if (showLoadingSpinner) {
+      return <LoadingSpinner />;
+    }
+
+    return (
+      <View style={styles.container}>
+        <CategoryList
+          data={categorySections}
+          refreshing={loadingProducts}
+          initialNumToRender={pageDataConfig.categorySectionsLimit}
+          ListHeaderComponent={
+            <CategoryListHeader
+              categories={previewCategories}
+              onPreviewPress={handleCategoryPress}
+            />
+          }
+          onProductPress={handleProductPress}
+          onCategoryPress={handleCategoryPress}
+          onEndReachedThreshold={0.5}
+          onEndReached={handleCategoryListEndReached}
+          onRefresh={handleCategoryListRefresh}
+        />
+      </View>
+    );
+  }
+);
 
 Main.displayName = ScreenName.Main;

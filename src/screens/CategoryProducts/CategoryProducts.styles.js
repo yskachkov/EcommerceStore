@@ -9,6 +9,9 @@ export default StyleSheet.create({
     paddingHorizontal: 5,
     backgroundColor: colors.white
   },
+  productList: {
+    minHeight: 135
+  },
   productImage: {
     marginRight: 50
   }

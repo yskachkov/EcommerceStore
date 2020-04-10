@@ -5,7 +5,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { ScreenName } from 'src/constants/screenNames';
 import { colors } from 'src/assets/styles/colors';
 import { GradientView, Divider, AndroidElement, BackButton, Link, Button } from 'src/components';
-import FormInput from 'src/components/Forms/Input';
+import { FormInput } from 'src/components/Forms/Input';
 import styles from './SignUp.styles';
 
 export const SignUp = memo(({ handleSubmit, navigation: { navigate, goBack } }) => {

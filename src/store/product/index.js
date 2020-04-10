@@ -13,14 +13,22 @@ const { reducer, actions } = createSlice({
     clearDetails: state => ({
       ...state,
       details: initialState.details
+    }),
+    startLoading: state => ({
+      ...state,
+      loading: true
+    }),
+    endLoading: state => ({
+      ...state,
+      loading: false
     })
   }
 });
 
-export const fetchData = createAction('product/fetchData');
+export const fetchProductDetails = createAction('product/fetchProductDetails');
 
 export const productReducer = reducer;
 export const productActions = {
   ...actions,
-  fetchData
+  fetchProductDetails
 };

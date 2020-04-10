@@ -4,7 +4,7 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 
 import { ScreenName } from 'src/constants/screenNames';
 import { GradientView, Link, Button } from 'src/components';
-import FormInput from 'src/components/Forms/Input';
+import { FormInput } from 'src/components/Forms/Input';
 import styles from './Login.styles';
 
 export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {

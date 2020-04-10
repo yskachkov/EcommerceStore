@@ -1,1 +1,1 @@
-export const PRODUCT_DISPLAY_LIMIT = 3;
+export const SECTION_PRODUCT_DISPLAY_LIMIT = 3;

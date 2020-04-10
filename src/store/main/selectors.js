@@ -1,24 +1,55 @@
 import { createSelector } from '@reduxjs/toolkit';
 import isEmpty from 'lodash/isEmpty';
 
-export const getCategories = state => state.main.categories;
+import { Entities } from './config';
 
-export const getProducts = state => state.main.products;
+const getEntityState = entity => state => state.main[entity];
+
+const getEntityList = entity => state => getEntityState(entity)(state).byId;
+
+const getEntityIds = entity => state => getEntityState(entity)(state).allIds;
+
+const getEntityLoading = entity => state => getEntityState(entity)(state).loading;
+
+export const getCategories = state => getEntityState(Entities.Categories)(state);
+
+export const getCategoriesList = state => getEntityList(Entities.Categories)(state);
+
+export const getCategoryIds = state => getEntityIds(Entities.Categories)(state);
+
+export const getCategoriesLoading = state => getEntityLoading(Entities.Categories)(state);
+
+export const getProducts = state => getEntityState(Entities.Products)(state);
+
+export const getProductsLoading = state => getEntityLoading(Entities.Products)(state);
 
 export const getCategoriesSections = createSelector(
   [getCategories, getProducts],
-  (categories, products) => {
-    if (isEmpty(categories)) {
+  (
+    { byId: categoriesById, allIds: allCategories },
+    { byId: productsById, allIds: allProducts }
+  ) => {
+    if (isEmpty(allCategories) || isEmpty(allProducts)) {
       return [];
     }
 
-    const categoryList = [...(categories?.values?.() || [])];
-    const productList = [...(products?.values?.() || [])];
+    const productList = Object.values(productsById);
 
-    return categoryList.map(({ id, name }) => ({
-      id,
-      name,
-      data: [productList.filter(({ categoryId }) => categoryId === id)]
-    }));
+    return allCategories.reduce((sections, categoryId) => {
+      const { id, name } = categoriesById[categoryId];
+      const categoryProducts = productList.filter(({ categoryId }) => categoryId === id);
+
+      if (!isEmpty(categoryProducts)) {
+        sections.push({
+          id,
+          name,
+          products: categoryProducts
+        });
+      }
+
+      return sections;
+    }, []);
   }
 );
+
+export const getFilter = state => state.main.filter;

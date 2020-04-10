@@ -1,15 +1,17 @@
 import React, { memo, useCallback } from 'react';
 import { View, FlatList } from 'react-native';
 
-import { ProductCard } from 'src/components';
+import { ListRefreshControl, ProductCard } from 'src/components';
 
 export const ProductList = memo(
   ({
+    refreshing,
     keyProperty = 'id',
     containerStyle,
     listItemStyle,
     productImageStyle,
     onProductPress,
+    onRefresh,
     ...props
   }) => {
     const renderItem = useCallback(
@@ -18,7 +20,7 @@ export const ProductList = memo(
 
         return (
           <ProductCard
-            key={name}
+            key={id}
             title={name}
             price={price}
             oldPrice={oldPrice}
@@ -36,7 +38,12 @@ export const ProductList = memo(
 
     return (
       <View style={containerStyle}>
-        <FlatList {...props} renderItem={renderItem} keyExtractor={keyExtractor} />
+        <FlatList
+          {...props}
+          renderItem={renderItem}
+          keyExtractor={keyExtractor}
+          refreshControl={<ListRefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
+        />
       </View>
     );
   }

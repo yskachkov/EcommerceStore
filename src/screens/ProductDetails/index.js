@@ -1,11 +1,12 @@
 import { connect } from 'react-redux';
 
-import { getProductDetails } from 'src/store/product/selectors';
+import { getProductDetails, getProductDetailsLoading } from 'src/store/product/selectors';
 import { productActions } from 'src/store/product';
 import { ProductDetails } from './ProductDetails';
 
 const mapStateToProps = state => ({
-  data: getProductDetails(state)
+  data: getProductDetails(state),
+  loading: getProductDetailsLoading(state)
 });
 
 const mapActionCreatorsToProps = {

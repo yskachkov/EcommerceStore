@@ -1,5 +1,4 @@
 import { createAction, createSlice } from '@reduxjs/toolkit';
-import isEmpty from 'lodash/isEmpty';
 
 import { initialState } from './initialState';
 
@@ -7,25 +6,61 @@ const { reducer, actions } = createSlice({
   name: 'main',
   initialState,
   reducers: {
-    updateCategories: (state, { payload: { data } }) => ({
+    updateData: (
+      state,
+      {
+        payload: {
+          entity,
+          data: { byId, allIds }
+        }
+      }
+    ) => ({
       ...state,
-      categories: data
+      [entity]: {
+        ...state[entity],
+        byId: {
+          ...state[entity].byId,
+          ...byId
+        },
+        allIds: [...state[entity].allIds, ...allIds]
+      }
     }),
-    updateProducts: (state, { payload: { data } }) => {
-      const products = new Map([...(isEmpty(state.products) ? [] : state.products), ...data]);
-
-      return {
-        ...state,
-        products
-      };
-    }
+    resetData: (state, { payload: { entity } }) => ({
+      ...state,
+      [entity]: initialState[entity]
+    }),
+    updateFilter: (state, { payload }) => ({
+      ...state,
+      filter: {
+        ...state.filter,
+        ...payload
+      }
+    }),
+    startLoading: (state, { payload: { entity } }) => ({
+      ...state,
+      [entity]: {
+        ...state[entity],
+        loading: true
+      }
+    }),
+    endLoading: (state, { payload: { entity } }) => ({
+      ...state,
+      [entity]: {
+        ...state[entity],
+        loading: false
+      }
+    })
   }
 });
 
-export const fetchData = createAction('main/fetchData');
+export const fetchCategoriesData = createAction('main/fetchCategoriesData');
+export const fetchProducts = createAction('main/fetchProducts');
+export const refreshCategoriesData = createAction('main/refreshCategoriesData');
 
 export const mainReducer = reducer;
 export const mainActions = {
   ...actions,
-  fetchData
+  fetchCategoriesData,
+  fetchProducts,
+  refreshCategoriesData
 };

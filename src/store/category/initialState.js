@@ -1,4 +1,7 @@
 export const initialState = {
-  products: {},
-  loading: false
+  products: {
+    byId: {},
+    allIds: [],
+    loading: false
+  }
 };

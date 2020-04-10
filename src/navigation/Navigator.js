@@ -6,11 +6,11 @@ import { LoadingSpinner } from 'src/components';
 import { MainDrawer, AuthStack } from './navigators';
 
 export const Navigator = memo(({ user: { token, loading }, authenticateUser }) => {
-  const isAuthenticatedUser = useMemo(() => !isEmpty(token), [token]);
-
   useEffect(() => {
     authenticateUser();
   }, [authenticateUser]);
+
+  const isAuthenticatedUser = useMemo(() => !isEmpty(token), [token]);
 
   if (loading) {
     return <LoadingSpinner size={70} />;

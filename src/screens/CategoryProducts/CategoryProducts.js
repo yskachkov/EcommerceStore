@@ -1,6 +1,5 @@
-import React, { memo, useEffect, useMemo, useCallback } from 'react';
+import React, { memo, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
-import isEmpty from 'lodash/isEmpty';
 
 import { ScreenName } from 'src/constants/screenNames';
 import { ProductList } from 'src/components';
@@ -9,8 +8,10 @@ import styles from './CategoryProducts.styles';
 export const CategoryProducts = memo(
   ({
     products,
-    fetchData,
+    loading,
+    fetchCategoryData,
     clearProducts,
+    refreshCategoryData,
     route: {
       params: {
         data: { categoryId }
@@ -19,21 +20,12 @@ export const CategoryProducts = memo(
     navigation: { navigate }
   }) => {
     useEffect(() => {
-      fetchData({
+      fetchCategoryData({
         categoryId
       });
 
       return clearProducts;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
-    const productList = useMemo(() => {
-      if (isEmpty(products)) {
-        return [];
-      }
-
-      return [...products.values()];
-    }, [products]);
+    }, [fetchCategoryData, categoryId, clearProducts]);
 
     const handleProductPress = useCallback(
       productId => {
@@ -46,12 +38,21 @@ export const CategoryProducts = memo(
       [navigate]
     );
 
+    const handleProductListRefresh = useCallback(() => {
+      refreshCategoryData({
+        categoryId
+      });
+    }, [refreshCategoryData, categoryId]);
+
     return (
       <View style={styles.container}>
         <ProductList
-          data={productList}
+          refreshing={loading}
+          data={products}
+          style={styles.productList}
           productImageStyle={styles.productImage}
           onProductPress={handleProductPress}
+          onRefresh={handleProductListRefresh}
         />
       </View>
     );

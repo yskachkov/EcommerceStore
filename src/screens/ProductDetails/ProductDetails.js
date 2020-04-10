@@ -3,14 +3,15 @@ import { StyleSheet, ScrollView, View, Text } from 'react-native';
 
 import { ScreenName } from 'src/constants/screenNames';
 import { colors } from 'src/assets/styles/colors';
-import { ImageSwiper, Divider, Button, LikeButton } from 'src/components';
+import { ImageSwiper, Divider, Button, LikeButton, LoadingSpinner } from 'src/components';
 import { ProductSection } from './components';
 import styles from './ProductDetails.styles';
 
 export const ProductDetails = memo(
   ({
     data: { images = [], name, oldPrice, price, description },
-    fetchData,
+    loading,
+    fetchProductDetails,
     clearDetails,
     route: {
       params: {
@@ -19,13 +20,16 @@ export const ProductDetails = memo(
     }
   }) => {
     useEffect(() => {
-      fetchData({
+      fetchProductDetails({
         productId
       });
 
       return clearDetails;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [fetchProductDetails, productId, clearDetails]);
+
+    if (loading) {
+      return <LoadingSpinner />;
+    }
 
     return (
       <ScrollView>

@@ -4,39 +4,55 @@ import get from 'lodash/get';
 import { Products } from 'src/controllers';
 import { categoryActions } from './';
 
-function* fetchData({ payload: { categoryId } }) {
+function* fetchCategoryData({ payload: { categoryId } }) {
+  yield put(categoryActions.startProductsLoading());
+
   try {
     const {
-      data: { rows }
+      data: { rows: products }
     } = yield call([Products, 'getCategoryProducts'], {
       category_id: categoryId
     });
 
-    const products = rows.reduce((productList, { id, cell: { name, price, thumb } }) => {
-      productList.set(id, {
+    const productsById = {};
+    const allProducts = [];
+
+    products.forEach(({ id, cell: { name, price, thumb } }) => {
+      productsById[id] = {
         id,
         name,
         price,
         categoryId,
         thumb: `http:${thumb}`
-      });
+      };
 
-      return productList;
-    }, new Map());
+      allProducts.push(id);
+    });
 
     yield put(
       categoryActions.updateProducts({
-        data: products
+        data: {
+          byId: productsById,
+          allIds: allProducts
+        }
       })
     );
   } catch (error) {
     const errorMessage = get(error, 'response.data.error', `Category fetchData error:\n${error}`);
 
     yield call(alert, errorMessage);
+  } finally {
+    yield put(categoryActions.endProductsLoading());
   }
 }
 
+function* refreshCategoryData(action) {
+  yield put(categoryActions.clearProducts());
+
+  yield* fetchCategoryData(action);
+}
+
 export function* categorySaga() {
-  // TODO: loading
-  yield takeLatest(categoryActions.fetchData.type, fetchData);
+  yield takeLatest(categoryActions.fetchCategoryData.type, fetchCategoryData);
+  yield takeLatest(categoryActions.refreshCategoryData.type, refreshCategoryData);
 }

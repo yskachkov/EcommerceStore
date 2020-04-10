@@ -4,10 +4,11 @@ import { colors } from 'src/assets/styles/colors';
 
 export default StyleSheet.create({
   container: {
-    padding: 15,
+    marginBottom: 15,
+    paddingHorizontal: 10,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    alignItems: 'center'
+    alignItems: 'flex-start'
   },
   title: {
     color: colors.bostonBlue,

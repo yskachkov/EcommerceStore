@@ -5,4 +5,5 @@ import { withFormikField } from 'src/HOCs';
 import { Input } from './Input';
 
 export * from './Input';
-export default compose(connect, withFormikField)(Input);
+
+export const FormInput = compose(connect, withFormikField)(Input);
