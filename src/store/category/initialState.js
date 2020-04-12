@@ -3,5 +3,9 @@ export const initialState = {
     byId: {},
     allIds: [],
     loading: false
+  },
+  productFilter: {
+    total: 0,
+    page: 1
   }
 };

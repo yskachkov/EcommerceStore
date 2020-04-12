@@ -22,7 +22,8 @@ export const Main = memo(
   }) => {
     useEffect(() => {
       fetchCategoriesData(pageDataConfig);
-    }, [fetchCategoriesData]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const previewCategories = useMemo(() => categoryIds.map(id => categories[id]), [
       categories,

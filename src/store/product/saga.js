@@ -24,7 +24,11 @@ function* fetchProductDetails({ payload: { productId } }) {
       })
     );
   } catch (error) {
-    const errorMessage = get(error, 'response.data.error', `Product fetchData error:\n${error}`);
+    const errorMessage = get(
+      error,
+      'response.data.error',
+      `Product fetchProductDetails error:\n${error}`
+    );
 
     yield call(alert, errorMessage);
   } finally {

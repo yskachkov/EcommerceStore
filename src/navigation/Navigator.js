@@ -8,7 +8,8 @@ import { MainDrawer, AuthStack } from './navigators';
 export const Navigator = memo(({ user: { token, loading }, authenticateUser }) => {
   useEffect(() => {
     authenticateUser();
-  }, [authenticateUser]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const isAuthenticatedUser = useMemo(() => !isEmpty(token), [token]);
 

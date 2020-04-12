@@ -25,7 +25,8 @@ export const ProductDetails = memo(
       });
 
       return clearDetails;
-    }, [fetchProductDetails, productId, clearDetails]);
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (loading) {
       return <LoadingSpinner />;

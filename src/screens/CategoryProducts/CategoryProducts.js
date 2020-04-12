@@ -2,16 +2,18 @@ import React, { memo, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 
 import { ScreenName } from 'src/constants/screenNames';
+import { PRODUCT_LIST_DISPLAY_LIMIT } from './constants';
 import { ProductList } from 'src/components';
 import styles from './CategoryProducts.styles';
 
 export const CategoryProducts = memo(
   ({
     products,
+    productsTotal,
     loading,
-    fetchCategoryData,
-    clearProducts,
-    refreshCategoryData,
+    fetchProducts,
+    clearProductsData,
+    refreshProducts,
     route: {
       params: {
         data: { categoryId }
@@ -20,12 +22,14 @@ export const CategoryProducts = memo(
     navigation: { navigate }
   }) => {
     useEffect(() => {
-      fetchCategoryData({
-        categoryId
+      fetchProducts({
+        categoryId,
+        limit: PRODUCT_LIST_DISPLAY_LIMIT
       });
 
-      return clearProducts;
-    }, [fetchCategoryData, categoryId, clearProducts]);
+      return clearProductsData;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleProductPress = useCallback(
       productId => {
@@ -38,20 +42,37 @@ export const CategoryProducts = memo(
       [navigate]
     );
 
-    const handleProductListRefresh = useCallback(() => {
-      refreshCategoryData({
-        categoryId
+    const handleProductListEndReached = useCallback(() => {
+      const allProductsHasBeenDisplayed = products.length === productsTotal;
+
+      if (allProductsHasBeenDisplayed) {
+        return;
+      }
+
+      fetchProducts({
+        categoryId,
+        limit: PRODUCT_LIST_DISPLAY_LIMIT
       });
-    }, [refreshCategoryData, categoryId]);
+    }, [categoryId, fetchProducts, products, productsTotal]);
+
+    const handleProductListRefresh = useCallback(() => {
+      refreshProducts({
+        categoryId,
+        limit: PRODUCT_LIST_DISPLAY_LIMIT
+      });
+    }, [refreshProducts, categoryId]);
 
     return (
       <View style={styles.container}>
         <ProductList
+          initialNumToRender={PRODUCT_LIST_DISPLAY_LIMIT}
           refreshing={loading}
           data={products}
           style={styles.productList}
           productImageStyle={styles.productImage}
           onProductPress={handleProductPress}
+          onEndReachedThreshold={0.2}
+          onEndReached={handleProductListEndReached}
           onRefresh={handleProductListRefresh}
         />
       </View>

@@ -1,0 +1,1 @@
+export const PRODUCT_LIST_DISPLAY_LIMIT = 5;

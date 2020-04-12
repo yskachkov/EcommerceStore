@@ -1,3 +1,5 @@
-export const getProductDetails = state => state.product.details;
+export const getState = state => state.product;
 
-export const getProductDetailsLoading = state => state.product.loading;
+export const getProductDetails = state => getState(state).details;
+
+export const getProductDetailsLoading = state => getState(state).loading;

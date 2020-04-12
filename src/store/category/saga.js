@@ -1,17 +1,21 @@
-import { takeLatest, call, put } from 'redux-saga/effects';
+import { takeLatest, call, put, select } from 'redux-saga/effects';
 import get from 'lodash/get';
 
 import { Products } from 'src/controllers';
+import { getProductFilter } from './selectors';
 import { categoryActions } from './';
 
-function* fetchCategoryData({ payload: { categoryId } }) {
+function* fetchProducts({ payload: { categoryId, limit } }) {
+  const { page } = yield select(getProductFilter);
   yield put(categoryActions.startProductsLoading());
 
   try {
     const {
-      data: { rows: products }
+      data: { rows: products, records: productsTotal }
     } = yield call([Products, 'getCategoryProducts'], {
-      category_id: categoryId
+      page,
+      category_id: categoryId,
+      rows: limit
     });
 
     const productsById = {};
@@ -37,8 +41,19 @@ function* fetchCategoryData({ payload: { categoryId } }) {
         }
       })
     );
+
+    yield put(
+      categoryActions.updateProductFilter({
+        total: parseInt(productsTotal, 10),
+        page: page + 1
+      })
+    );
   } catch (error) {
-    const errorMessage = get(error, 'response.data.error', `Category fetchData error:\n${error}`);
+    const errorMessage = get(
+      error,
+      'response.data.error',
+      `Category fetchCategoryData error:\n${error}`
+    );
 
     yield call(alert, errorMessage);
   } finally {
@@ -46,13 +61,13 @@ function* fetchCategoryData({ payload: { categoryId } }) {
   }
 }
 
-function* refreshCategoryData(action) {
-  yield put(categoryActions.clearProducts());
+function* refreshProducts(action) {
+  yield put(categoryActions.clearProductsData());
 
-  yield* fetchCategoryData(action);
+  yield* fetchProducts(action);
 }
 
 export function* categorySaga() {
-  yield takeLatest(categoryActions.fetchCategoryData.type, fetchCategoryData);
-  yield takeLatest(categoryActions.refreshCategoryData.type, refreshCategoryData);
+  yield takeLatest(categoryActions.fetchProducts.type, fetchProducts);
+  yield takeLatest(categoryActions.refreshProducts.type, refreshProducts);
 }

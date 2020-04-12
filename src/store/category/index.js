@@ -10,7 +10,7 @@ const { reducer, actions } = createSlice({
       state,
       {
         payload: {
-          data: { byId, allIds }
+          data: { byId, allIds, total }
         }
       }
     ) => ({
@@ -21,12 +21,14 @@ const { reducer, actions } = createSlice({
           ...state.products.byId,
           ...byId
         },
-        allIds: [...state.products.allIds, ...allIds]
+        allIds: [...state.products.allIds, ...allIds],
+        total: total || state.total
       }
     }),
-    clearProducts: state => ({
+    clearProductsData: state => ({
       ...state,
-      products: initialState.products
+      products: initialState.products,
+      productFilter: initialState.productFilter
     }),
     startProductsLoading: state => ({
       ...state,
@@ -41,16 +43,23 @@ const { reducer, actions } = createSlice({
         ...state.products,
         loading: false
       }
+    }),
+    updateProductFilter: (state, { payload }) => ({
+      ...state,
+      productFilter: {
+        ...state.productFilter,
+        ...payload
+      }
     })
   }
 });
 
-export const fetchCategoryData = createAction('category/fetchCategoryData');
-export const refreshCategoryData = createAction('category/refreshCategoryData');
+export const fetchProducts = createAction('category/fetchProducts');
+export const refreshProducts = createAction('category/refreshProducts');
 
 export const categoryReducer = reducer;
 export const categoryActions = {
   ...actions,
-  fetchCategoryData,
-  refreshCategoryData
+  fetchProducts,
+  refreshProducts
 };
