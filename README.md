@@ -1,3 +1,5 @@
-React Native app for online store
+React Native app for online store.
 
-Pet project for React Native Global Mentoring Program
+Target platform - Android.
+
+Pet project for React Native Global Mentoring Program.
