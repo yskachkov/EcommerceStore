@@ -27,7 +27,7 @@ export const Login = memo(({ user: { signInLoading }, handleSubmit, navigation: 
             loading={signInLoading}
             disabled={signInLoading}
             containerStyle={styles.submitButton}
-            textStyle={styles.buttonLabel}
+            textStyle={styles.buttonText}
             onPress={handleSubmit}
           />
           <Link

@@ -28,13 +28,13 @@ export const Header = memo(
           <Button
             type="clear"
             icon={<Icon name="bars" size={30} color={colors.white} />}
-            containerStyle={styles.iconButton}
+            containerStyle={styles.leftButton}
             onPress={onDrawerToggle}
           />
         ) : (
           <BackButton
             color={transparent ? colors.mineShaft : colors.white}
-            containerStyle={styles.iconButton}
+            containerStyle={styles.leftButton}
             onPress={onBackButtonPress}
           />
         )}
@@ -46,9 +46,19 @@ export const Header = memo(
           </View>
         )}
         {withSearch && (
-          <Icon name="search" size={25} color={colors.white} style={styles.searchIcon} />
+          <Button
+            type="clear"
+            icon={<Icon name="search" size={25} color={colors.white} />}
+            containerStyle={styles.searchButton}
+          />
         )}
-        {withCart && <Icon name="shopping-cart" size={25} color={colors.white} />}
+        {withCart && (
+          <Button
+            type="clear"
+            icon={<Icon name="shopping-cart" size={25} color={colors.white} />}
+            containerStyle={styles.rightButton}
+          />
+        )}
       </View>
       {withSearchBar && (
         <View style={styles.searchRow}>

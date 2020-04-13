@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import get from 'lodash/get';
 
@@ -24,13 +25,9 @@ function* fetchProductDetails({ payload: { productId } }) {
       })
     );
   } catch (error) {
-    const errorMessage = get(
-      error,
-      'response.data.error',
-      `Product fetchProductDetails error:\n${error}`
-    );
+    const errorMessage = get(error, 'response.data.error', error);
 
-    yield call(alert, errorMessage);
+    yield call(Alert.alert, 'Product details fetch error', errorMessage);
   } finally {
     yield put(productActions.endLoading());
   }

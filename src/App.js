@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { isAndroidPlatform } from './utils/platform';
 import { store } from './store';
 import { AppNavigator } from './navigation';
+import { AppModal } from './components';
 
 const { UIManager } = NativeModules;
 
@@ -16,6 +17,7 @@ if (isAndroidPlatform()) {
 const App = () => (
   <Provider store={store}>
     <AppNavigator />
+    <AppModal />
   </Provider>
 );
 

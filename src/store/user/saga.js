@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -24,9 +25,9 @@ function* signIn({ payload: { login, password } }) {
 
     yield call([Authentication, 'updateToken'], token);
   } catch (error) {
-    const errorMessage = get(error, 'response.data.error', `Sign-In error:\n${error}`);
+    const errorMessage = get(error, 'response.data.error', error);
 
-    yield call(alert, errorMessage);
+    yield call(Alert.alert, 'Sign-In error', errorMessage);
   } finally {
     yield put(userActions.endSignInLoading());
   }
