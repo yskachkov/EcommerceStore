@@ -10,13 +10,21 @@ const { reducer, actions } = createSlice({
       ...state,
       token
     }),
-    userLoadingStart: state => ({
+    startSignInLoading: state => ({
       ...state,
-      loading: true
+      signInLoading: true
     }),
-    userLoadingEnd: state => ({
+    endSignInLoading: state => ({
       ...state,
-      loading: false
+      signInLoading: false
+    }),
+    startAuthenticationLoading: state => ({
+      ...state,
+      authenticationLoading: true
+    }),
+    endAuthenticationLoading: state => ({
+      ...state,
+      authenticationLoading: false
     })
   }
 });

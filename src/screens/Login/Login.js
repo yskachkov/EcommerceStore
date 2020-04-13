@@ -1,20 +1,19 @@
 import React, { memo, useCallback } from 'react';
-import { Text, View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import { ScreenName } from 'src/constants/screenNames';
-import { GradientView, Link, Button } from 'src/components';
+import { GradientView, FadeInView, TouchableText, Link, Button } from 'src/components';
 import { FormInput } from 'src/components/Forms/Input';
 import styles from './Login.styles';
 
-export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
+export const Login = memo(({ user: { signInLoading }, handleSubmit, navigation: { navigate } }) => {
   const redirectToSignUpScreen = useCallback(() => navigate(ScreenName.SignUp), [navigate]);
 
   return (
     <GradientView style={styles.gradientView}>
       <KeyboardAwareScrollView>
-        <View style={styles.container}>
-          <Text style={styles.title}>Ecommerce Store</Text>
+        <FadeInView style={styles.container}>
+          <TouchableText style={styles.title}>Ecommerce Store</TouchableText>
           <FormInput name="login" placeholder="Login" style={styles.input} />
           <FormInput
             secureTextEntry
@@ -25,8 +24,10 @@ export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
           <Link title="Forgot Password ?" containerStyle={styles.resetPasswordLink} />
           <Button
             title="Sign in"
+            loading={signInLoading}
+            disabled={signInLoading}
             containerStyle={styles.submitButton}
-            buttonStyle={styles.button}
+            textStyle={styles.buttonLabel}
             onPress={handleSubmit}
           />
           <Link
@@ -34,7 +35,7 @@ export const Login = memo(({ handleSubmit, navigation: { navigate } }) => {
             containerStyle={styles.signUpLink}
             onPress={redirectToSignUpScreen}
           />
-        </View>
+        </FadeInView>
       </KeyboardAwareScrollView>
     </GradientView>
   );

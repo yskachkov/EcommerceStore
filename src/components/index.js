@@ -1,4 +1,7 @@
 export * from './AndroidElement';
+export * from './FadeInView';
+export * from './TouchableText';
+export * from './BlinkingText';
 export * from './ListRefreshControl';
 export * from './ProductCard';
 export * from './ProductList';

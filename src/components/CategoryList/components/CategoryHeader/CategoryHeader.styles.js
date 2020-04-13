@@ -14,13 +14,13 @@ export default StyleSheet.create({
     color: colors.bostonBlue,
     fontSize: 20
   },
-  viewAllButtonContainer: {
+  viewAllButton: {
     borderRadius: 3,
     paddingTop: 5,
     paddingHorizontal: 20,
     paddingBottom: 3
   },
-  viewAllButton: {
+  viewAllButtonText: {
     color: colors.white,
     fontSize: 12
   }

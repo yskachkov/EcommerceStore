@@ -5,7 +5,7 @@ import isEmpty from 'lodash/isEmpty';
 import { LoadingSpinner } from 'src/components';
 import { MainDrawer, AuthStack } from './navigators';
 
-export const Navigator = memo(({ user: { token, loading }, authenticateUser }) => {
+export const Navigator = memo(({ user: { token, authenticationLoading }, authenticateUser }) => {
   useEffect(() => {
     authenticateUser();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -13,7 +13,7 @@ export const Navigator = memo(({ user: { token, loading }, authenticateUser }) =
 
   const isAuthenticatedUser = useMemo(() => !isEmpty(token), [token]);
 
-  if (loading) {
+  if (authenticationLoading) {
     return <LoadingSpinner size={70} />;
   }
 

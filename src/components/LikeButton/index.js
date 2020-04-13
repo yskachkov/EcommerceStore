@@ -1,14 +1,20 @@
 import React, { memo, useState, useCallback } from 'react';
+import { LayoutAnimation } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
 import { colors } from 'src/assets/styles/colors';
 import { Button } from 'src/components';
+import { heartAnimation } from './config';
 import styles from './LikeButton.styles';
 
-export const LikeButton = memo(({ buttonStyle, containerStyle }) => {
+export const LikeButton = memo(({ textStyle, containerStyle }) => {
   const [isActive, toggleActivity] = useState(false);
 
-  const handleToggle = useCallback(() => toggleActivity(!isActive), [isActive]);
+  const handleToggle = useCallback(() => {
+    LayoutAnimation.configureNext(heartAnimation);
+
+    toggleActivity(!isActive);
+  }, [isActive]);
 
   return (
     <Button
@@ -23,7 +29,7 @@ export const LikeButton = memo(({ buttonStyle, containerStyle }) => {
           style={styles.icon}
         />
       }
-      buttonStyle={buttonStyle}
+      textStyle={textStyle}
       containerStyle={containerStyle}
       onPress={handleToggle}
     />

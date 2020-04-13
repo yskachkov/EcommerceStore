@@ -30,7 +30,7 @@ export default StyleSheet.create({
   passwordInput: {
     marginBottom: 10
   },
-  button: {
+  buttonLabel: {
     textTransform: 'uppercase',
     color: colors.white,
     fontWeight: '600',
