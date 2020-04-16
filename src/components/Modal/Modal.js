@@ -1,4 +1,4 @@
-import React, { memo, useMemo, useCallback } from 'react';
+import React, { memo, useCallback } from 'react';
 import {
   Modal as RegularModal,
   TouchableOpacity,
@@ -10,11 +10,11 @@ import isEmpty from 'lodash/isEmpty';
 import { modals } from './config';
 import styles from './Modal.styles';
 
-export const Modal = memo(({ modal: { isVisible, name }, closeModal }) => {
+export const Modal = memo(({ modal: { isVisible, name, modalProps }, closeModal }) => {
   if (isEmpty(name) || !isVisible) {
     return null;
   }
-  const ModalContent = useMemo(() => modals[name], [name]);
+  const ModalContent = modals[name];
 
   const handleModalClose = useCallback(() => closeModal(), [closeModal]);
 
@@ -28,7 +28,7 @@ export const Modal = memo(({ modal: { isVisible, name }, closeModal }) => {
       <TouchableOpacity activeOpacity={1} style={styles.container} onPress={handleModalClose}>
         <TouchableWithoutFeedback>
           <View>
-            <ModalContent onClose={handleModalClose} />
+            <ModalContent {...modalProps} onClose={handleModalClose} />
           </View>
         </TouchableWithoutFeedback>
       </TouchableOpacity>

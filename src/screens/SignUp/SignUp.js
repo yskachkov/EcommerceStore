@@ -2,7 +2,7 @@ import React, { memo, useCallback } from 'react';
 import { View } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { colors } from 'src/assets/styles/colors';
 import {
   GradientView,
@@ -17,7 +17,7 @@ import { FormInput } from 'src/components/Forms/Input';
 import styles from './SignUp.styles';
 
 export const SignUp = memo(({ handleSubmit, navigation: { navigate, goBack } }) => {
-  const redirectToLoginScreen = useCallback(() => navigate(ScreenName.Login), [navigate]);
+  const navigateToLoginScreen = useCallback(() => navigate(ScreenName.Login), [navigate]);
 
   return (
     <GradientView style={styles.gradientView}>
@@ -46,7 +46,7 @@ export const SignUp = memo(({ handleSubmit, navigation: { navigate, goBack } }) 
           <Link
             title="Already have account? Sign In"
             style={styles.signInLink}
-            onPress={redirectToLoginScreen}
+            onPress={navigateToLoginScreen}
           />
         </View>
       </KeyboardAwareScrollView>

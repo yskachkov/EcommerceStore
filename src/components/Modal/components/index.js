@@ -1,3 +1,4 @@
 export * from './GenericModal';
-export * from './LoginModal';
+export * from './LoginToContinueModal';
 export * from './InternetConnectionErrorModal';
+export * from './SignInErrorModal';

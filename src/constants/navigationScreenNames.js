@@ -7,5 +7,7 @@ export const ScreenName = {
   WishList: 'WishList',
   Cart: 'Cart',
   Orders: 'Orders',
-  CategoryProducts: 'CategoryProducts'
+  CategoryProducts: 'CategoryProducts',
+  MainDrawer: 'MainDrawer',
+  MainStack: 'MainStack'
 };

@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { getState } from 'src/store/user/selectors';
 import { userActions } from 'src/store/user';
 import { modalActions } from 'src/store/modal';
-import { Navigator } from './Navigator';
+import { Navigator as NavigatorComponent } from './Navigator';
 
 const mapStateToProps = state => ({
   user: getState(state)
@@ -14,4 +14,4 @@ const mapActionCreatorsToProps = {
   ...modalActions
 };
 
-export const AppNavigator = connect(mapStateToProps, mapActionCreatorsToProps)(Navigator);
+export const Navigator = connect(mapStateToProps, mapActionCreatorsToProps)(NavigatorComponent);

@@ -1,10 +1,12 @@
 import React, { memo } from 'react';
-import { Text, View } from 'react-native';
+import { Text } from 'react-native';
 
-export const DummyScreen = memo(({ route: { name } }) => (
-  <View>
+import { ProtectedScreenView } from 'src/components';
+
+export const DummyScreen = memo(({ route: { name }, navigation: { navigate } }) => (
+  <ProtectedScreenView navigate={navigate}>
     <Text>{name} Screen</Text>
-  </View>
+  </ProtectedScreenView>
 ));
 
 DummyScreen.displayName = 'DummyScreen';

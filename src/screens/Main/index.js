@@ -7,7 +7,7 @@ import {
   getCategoriesLoading,
   getProductsLoading
 } from 'src/store/main/selectors';
-import { fetchCategoriesData, fetchProducts, refreshCategoriesData } from 'src/store/main';
+import { mainActions } from 'src/store/main';
 import { Main } from './Main';
 
 const mapStateToProps = state => ({
@@ -19,9 +19,7 @@ const mapStateToProps = state => ({
 });
 
 const mapActionCreatorsToProps = {
-  fetchCategoriesData,
-  fetchProducts,
-  refreshCategoriesData
+  ...mainActions
 };
 
 export const MainScreen = connect(mapStateToProps, mapActionCreatorsToProps)(Main);

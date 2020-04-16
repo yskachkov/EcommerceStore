@@ -2,7 +2,7 @@ import React, { memo, useEffect, useCallback, useMemo } from 'react';
 import { View } from 'react-native';
 import isEmpty from 'lodash/isEmpty';
 
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { pageDataConfig } from './config';
 import { CategoryList, LoadingSpinner } from 'src/components';
 import { CategoryListHeader } from './components';
@@ -18,10 +18,13 @@ export const Main = memo(
     fetchCategoriesData,
     fetchProducts,
     refreshCategoriesData,
+    clearCategoriesData,
     navigation: { navigate }
   }) => {
     useEffect(() => {
       fetchCategoriesData(pageDataConfig);
+
+      return clearCategoriesData;
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 

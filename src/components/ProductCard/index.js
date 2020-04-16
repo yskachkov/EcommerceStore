@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React from 'react';
 import { StyleSheet, View, TouchableOpacity, Image, Text } from 'react-native';
 
 import { withMemo } from 'src/HOCs';
@@ -6,7 +6,7 @@ import styles from './ProductCard.styles';
 
 export const ProductCard = withMemo(
   ({ title, imageUri, price, oldPrice, containerStyle, imageStyle, titleStyle, onPress }) => {
-    const imageSource = useMemo(() => ({ uri: imageUri }), [imageUri]);
+    const imageSource = { uri: imageUri };
 
     return (
       <TouchableOpacity

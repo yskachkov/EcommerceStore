@@ -1,4 +1,4 @@
-import React, { memo, useMemo } from 'react';
+import React, { memo } from 'react';
 import { StyleSheet, TouchableOpacity, Text } from 'react-native';
 import isString from 'lodash/isString';
 
@@ -20,13 +20,13 @@ export const Button = memo(
     textStyle,
     onPress
   }) => {
-    const buttonTypes = useMemo(() => Object.values(ButtonType), []);
+    const buttonTypes = Object.values(ButtonType);
 
     if (!buttonTypes.includes(type)) {
       return null;
     }
 
-    const isTitleString = useMemo(() => isString(title), [title]);
+    const isTitleString = isString(title);
 
     return (
       <TouchableOpacity

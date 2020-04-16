@@ -1,11 +1,7 @@
-import { memo, useMemo } from 'react';
+import { memo } from 'react';
 
 import { isAndroidPlatform } from 'src/utils/platform';
 
-export const AndroidElement = memo(({ children }) => {
-  const isCurrentPlatformAndroid = useMemo(() => isAndroidPlatform(), []);
-
-  return isCurrentPlatformAndroid ? children : null;
-});
+export const AndroidElement = memo(({ children }) => (isAndroidPlatform() ? children : null));
 
 AndroidElement.displayName = 'AndroidElement';
