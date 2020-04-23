@@ -12,8 +12,8 @@ export const Navigator = memo(
     const isAuthenticatedUser = !isEmpty(token);
 
     useEffect(() => {
-      const unsubscribeNetInfo = NetInfo.addEventListener(({ isConnected }) => {
-        if (isConnected) {
+      const unsubscribeNetInfo = NetInfo.addEventListener(({ isInternetReachable }) => {
+        if (isInternetReachable) {
           return;
         }
 

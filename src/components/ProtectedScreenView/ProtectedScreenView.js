@@ -1,52 +1,45 @@
-import React, { memo, useEffect, useCallback } from 'react';
-import { View, Text, Vibration } from 'react-native';
+import React, { memo, useCallback } from 'react';
+import { StyleSheet, View, Text, Vibration } from 'react-native';
 import isEmpty from 'lodash/isEmpty';
 import partial from 'lodash/partial';
 
 import { ScreenName } from 'src/constants/navigationScreenNames';
-import { VIBRATION_PATTERN } from 'src/constants/vibration';
+import { useVibration } from 'src/hooks';
 import { Button, Link } from 'src/components';
 import styles from './ProtectedScreenView.styles';
 
-export const ProtectedScreenView = memo(({ user: { token }, children, navigate, ...props }) => {
-  const isUserGuest = isEmpty(token);
+export const ProtectedScreenView = memo(
+  ({ user: { token }, children, navigate, style, ...props }) => {
+    const isAuthenticatedUser = !isEmpty(token);
 
-  useEffect(() => {
-    if (!isUserGuest) {
-      return;
+    useVibration(isAuthenticatedUser);
+
+    if (isAuthenticatedUser) {
+      return <View {...props}>{children}</View>;
     }
 
-    Vibration.vibrate(VIBRATION_PATTERN);
+    const handleButtonPress = useCallback(
+      screenName => {
+        Vibration.cancel();
 
-    return Vibration.cancel;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+        navigate(screenName);
+      },
+      [navigate]
+    );
 
-  if (!isUserGuest) {
-    return <View {...props}>{children}</View>;
+    const handleLoginPress = partial(handleButtonPress, ScreenName.Login);
+
+    const handleSignUpPress = partial(handleButtonPress, ScreenName.SignUp);
+
+    return (
+      <View style={StyleSheet.flatten([styles.container, style])}>
+        <Text>Login first</Text>
+        <Text>To view the screen please login first</Text>
+        <Button title="Login Now" onPress={handleLoginPress} />
+        <Link title="New here? Sign Up" onPress={handleSignUpPress} />
+      </View>
+    );
   }
-
-  const handleButtonPress = useCallback(
-    screenName => {
-      Vibration.cancel();
-
-      navigate(screenName);
-    },
-    [navigate]
-  );
-
-  const handleLoginPress = partial(handleButtonPress, ScreenName.Login);
-
-  const handleSignUpPress = partial(handleButtonPress, ScreenName.SignUp);
-
-  return (
-    <View style={styles.container}>
-      <Text>Login first</Text>
-      <Text>To view the screen please login first</Text>
-      <Button title="Login Now" onPress={handleLoginPress} />
-      <Link title="New here? Sign Up" onPress={handleSignUpPress} />
-    </View>
-  );
-});
+);
 
 ProtectedScreenView.displayName = 'ProtectedScreenView';

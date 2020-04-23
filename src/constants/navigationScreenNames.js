@@ -8,6 +8,7 @@ export const ScreenName = {
   Cart: 'Cart',
   Orders: 'Orders',
   CategoryProducts: 'CategoryProducts',
+  Map: 'Map',
   MainDrawer: 'MainDrawer',
   MainStack: 'MainStack'
 };

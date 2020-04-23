@@ -1,24 +1,16 @@
-import React, { memo, useEffect } from 'react';
-import { Vibration, View, Text } from 'react-native';
+import React, { memo } from 'react';
+import { View, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 
-import { VIBRATION_PATTERN } from 'src/constants/vibration';
 import { ModalType, icons } from 'src/components/Modal/config';
+import { useVibration } from 'src/hooks';
 import styles from './GenericModal.styles';
 
 export const GenericModal = memo(({ type, title, text, buttons }) => {
   const iconConfig = icons[type];
+  const isNonErrorModal = type !== ModalType.Error;
 
-  useEffect(() => {
-    if (type !== ModalType.Error) {
-      return;
-    }
-
-    Vibration.vibrate(VIBRATION_PATTERN);
-
-    return Vibration.cancel;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  useVibration(isNonErrorModal);
 
   return (
     <View style={styles.container}>
