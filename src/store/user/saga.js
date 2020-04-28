@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put } from 'redux-saga/effects';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -6,6 +7,8 @@ import { Authentication } from 'src/controllers';
 import { userActions } from './';
 
 function* signIn({ payload: { login, password } }) {
+  yield put(userActions.startSignInLoading());
+
   try {
     const {
       data: { token }
@@ -22,14 +25,16 @@ function* signIn({ payload: { login, password } }) {
 
     yield call([Authentication, 'updateToken'], token);
   } catch (error) {
-    const errorMessage = get(error, 'response.data.error', `Sign-In error:\n${error}`);
+    const errorMessage = get(error, 'response.data.error', error);
 
-    yield call(alert, errorMessage);
+    yield call(Alert.alert, 'Sign-In error', errorMessage);
+  } finally {
+    yield put(userActions.endSignInLoading());
   }
 }
 
 function* authenticate() {
-  yield put(userActions.userLoadingStart());
+  yield put(userActions.startAuthenticationLoading());
 
   try {
     const userToken = yield call([Authentication, 'restoreToken']);
@@ -50,7 +55,7 @@ function* authenticate() {
 
     yield call(console.log, errorMessage);
   } finally {
-    yield put(userActions.userLoadingEnd());
+    yield put(userActions.endAuthenticationLoading());
   }
 }
 

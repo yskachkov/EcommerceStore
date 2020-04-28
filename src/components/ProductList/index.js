@@ -6,7 +6,6 @@ import { ListRefreshControl, ProductCard } from 'src/components';
 export const ProductList = memo(
   ({
     refreshing,
-    keyProperty = 'id',
     containerStyle,
     listItemStyle,
     productImageStyle,
@@ -34,7 +33,7 @@ export const ProductList = memo(
       [listItemStyle, onProductPress, productImageStyle]
     );
 
-    const keyExtractor = useCallback(item => item[keyProperty], [keyProperty]);
+    const keyExtractor = useCallback(({ id }) => id, []);
 
     return (
       <View style={containerStyle}>

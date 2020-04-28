@@ -1,3 +1,4 @@
 export const initialState = {
-  loading: false
+  signInLoading: false,
+  authenticationLoading: false
 };

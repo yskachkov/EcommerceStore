@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { takeLatest, call, put, select, all } from 'redux-saga/effects';
 import get from 'lodash/get';
 import isEmpty from 'lodash/isEmpty';
@@ -46,9 +47,9 @@ function* fetchCategories() {
       })
     );
   } catch (error) {
-    const errorMessage = get(error, 'response.data.error', `Main fetchCategories error:\n${error}`);
+    const errorMessage = get(error, 'response.data.error', error);
 
-    yield call(alert, errorMessage);
+    yield call(Alert.alert, 'Categories fetch error', errorMessage);
   } finally {
     yield put(
       mainActions.endLoading({
@@ -93,13 +94,9 @@ function* fetchCategoryProducts({ categoryId, productLimit }) {
       })
     );
   } catch (error) {
-    const errorMessage = get(
-      error,
-      'response.data.error',
-      `Main fetchCategoryProducts error:\n${error}`
-    );
+    const errorMessage = get(error, 'response.data.error', error);
 
-    yield call(alert, errorMessage);
+    yield call(Alert.alert, 'Products fetch error', errorMessage);
   }
 }
 

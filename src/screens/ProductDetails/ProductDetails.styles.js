@@ -39,7 +39,7 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'stretch'
   },
-  buttonContainer: {
+  button: {
     flex: 1,
     padding: 15
   },
@@ -48,7 +48,7 @@ export default StyleSheet.create({
     borderTopColor: colors.bostonBlue,
     backgroundColor: colors.white
   },
-  button: {
+  buttonText: {
     fontSize: 16
   },
   addToCartButton: {

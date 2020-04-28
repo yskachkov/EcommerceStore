@@ -37,10 +37,10 @@ export default StyleSheet.create({
     alignSelf: 'flex-end',
     marginBottom: 15
   },
-  submitButtonContainer: {
+  submitButton: {
     marginBottom: 15
   },
-  submitButton: {
+  submitButtonText: {
     textTransform: 'uppercase',
     color: colors.white,
     fontWeight: '600',

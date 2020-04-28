@@ -10,8 +10,8 @@ export const CategoryHeader = withMemo(({ title, onViewAll, style }) => (
     <Text style={styles.title}>{title}</Text>
     <Button
       title="View All"
-      containerStyle={styles.viewAllButtonContainer}
-      buttonStyle={styles.viewAllButton}
+      containerStyle={styles.viewAllButton}
+      textStyle={styles.viewAllButtonText}
       onPress={onViewAll}
     />
   </View>

@@ -53,16 +53,13 @@ export const ProductDetails = memo(
         </ProductSection>
         <View style={styles.buttonGroup}>
           <LikeButton
-            containerStyle={StyleSheet.flatten([
-              styles.buttonContainer,
-              styles.wishListButtonContainer
-            ])}
-            buttonStyle={styles.button}
+            containerStyle={StyleSheet.flatten([styles.button, styles.wishListButtonContainer])}
+            textStyle={styles.buttonText}
           />
           <Button
             title="Add To Cart"
-            containerStyle={styles.buttonContainer}
-            buttonStyle={StyleSheet.flatten([styles.button, styles.addToCartButton])}
+            containerStyle={styles.button}
+            textStyle={StyleSheet.flatten([styles.buttonText, styles.addToCartButton])}
           />
         </View>
       </ScrollView>

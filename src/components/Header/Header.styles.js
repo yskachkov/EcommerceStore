@@ -16,8 +16,11 @@ export default StyleSheet.create({
     justifyContent: 'space-between',
     alignItems: 'center'
   },
-  iconButton: {
+  leftButton: {
     left: -10
+  },
+  rightButton: {
+    right: -10
   },
   titleWrapper: {
     position: 'absolute',
@@ -34,8 +37,7 @@ export default StyleSheet.create({
     fontStyle: 'italic',
     fontSize: 20
   },
-  searchIcon: {
-    marginRight: 30,
+  searchButton: {
     marginLeft: 'auto'
   },
   searchRow: {

@@ -5,7 +5,7 @@ import { Button } from 'src/components';
 import styles from './Link.styles.js';
 
 export const Link = memo(({ children, style = {}, ...props }) => (
-  <Button {...props} type="clear" buttonStyle={StyleSheet.flatten([styles.link, style])} />
+  <Button {...props} type="clear" textStyle={StyleSheet.flatten([styles.link, style])} />
 ));
 
 Link.displayName = 'Link';
