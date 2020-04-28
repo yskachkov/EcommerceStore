@@ -1,4 +1,4 @@
-import React, { memo, useRef, useEffect, useMemo, useCallback } from 'react';
+import React, { memo, useRef, useEffect, useCallback } from 'react';
 import { Animated, StyleSheet } from 'react-native';
 
 export const BlinkingText = memo(({ interval = 1500, children, style, ...props }) => {
@@ -9,19 +9,15 @@ export const BlinkingText = memo(({ interval = 1500, children, style, ...props }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const textStyle = useMemo(
-    () =>
-      StyleSheet.flatten([
-        style,
-        {
-          opacity: blinkAnimation.interpolate({
-            inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
-            outputRange: [0, 0.1, 0.3, 0.5, 0.8, 1]
-          })
-        }
-      ]),
-    [blinkAnimation, style]
-  );
+  const textStyle = StyleSheet.flatten([
+    style,
+    {
+      opacity: blinkAnimation.interpolate({
+        inputRange: [0, 0.2, 0.4, 0.6, 0.8, 1],
+        outputRange: [0, 0.1, 0.3, 0.5, 0.8, 1]
+      })
+    }
+  ]);
 
   const blink = useCallback(() => {
     blinkAnimation.setValue(1);

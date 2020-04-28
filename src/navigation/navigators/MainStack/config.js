@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { CategoryProductsScreen, MainScreen, ProductDetailsScreen } from 'src/screens';
 import { Header } from 'src/components';
 

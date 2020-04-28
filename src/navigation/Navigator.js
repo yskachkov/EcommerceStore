@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useMemo } from 'react';
+import React, { memo, useEffect } from 'react';
 import NetInfo from '@react-native-community/netinfo';
 import { NavigationContainer } from '@react-navigation/native';
 import isEmpty from 'lodash/isEmpty';
@@ -9,9 +9,11 @@ import { MainDrawer, AuthStack } from './navigators';
 
 export const Navigator = memo(
   ({ user: { token, authenticationLoading }, showModal, authenticateUser }) => {
+    const isAuthenticatedUser = !isEmpty(token);
+
     useEffect(() => {
-      const unsubscribe = NetInfo.addEventListener(({ isInternetReachable }) => {
-        if (isInternetReachable) {
+      const unsubscribeNetInfo = NetInfo.addEventListener(({ isConnected }) => {
+        if (isConnected) {
           return;
         }
 
@@ -22,11 +24,9 @@ export const Navigator = memo(
 
       authenticateUser();
 
-      return unsubscribe;
+      return unsubscribeNetInfo;
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-
-    const isAuthenticatedUser = useMemo(() => !isEmpty(token), [token]);
 
     if (authenticationLoading) {
       return <LoadingSpinner size={70} />;

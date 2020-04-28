@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useCallback } from 'react';
 import { View } from 'react-native';
 
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { PRODUCT_LIST_DISPLAY_LIMIT } from './constants';
 import { ProductList } from 'src/components';
 import styles from './CategoryProducts.styles';

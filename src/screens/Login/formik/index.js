@@ -1,4 +1,4 @@
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 
 export const formikConfig = {
   mapPropsToValues: () => ({ login: '', password: '' }),

@@ -49,6 +49,10 @@ const { reducer, actions } = createSlice({
         ...state[entity],
         loading: false
       }
+    }),
+    clearCategoriesData: state => ({
+      ...state,
+      ...initialState
     })
   }
 });

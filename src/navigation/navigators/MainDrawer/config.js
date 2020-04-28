@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ScreenName } from 'src/constants/screenNames';
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { MainStack } from 'src/navigation/navigators';
 import { DummyScreen } from 'src/screens';
 import { Drawer } from 'src/components';
@@ -56,7 +56,7 @@ export const navigatorScreenConfigs = [
     }
   },
   {
-    name: 'MainStack',
+    name: ScreenName.MainStack,
     component: MainStack,
     props: {
       options: {

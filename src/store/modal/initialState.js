@@ -1,4 +1,5 @@
 export const initialState = {
   isVisible: false,
-  name: ''
+  name: '',
+  modalProps: {}
 };

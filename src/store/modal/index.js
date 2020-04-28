@@ -6,15 +6,18 @@ const { reducer, actions } = createSlice({
   name: 'modal',
   initialState,
   reducers: {
-    showModal: (state, { payload: { name } }) => ({
+    showModal: (state, { payload: { name, modalProps = {} } }) => ({
       ...state,
       name,
+      modalProps: {
+        ...state.modalProps,
+        ...modalProps
+      },
       isVisible: true
     }),
     closeModal: state => ({
       ...state,
-      name: '',
-      isVisible: false
+      ...initialState
     })
   }
 });

@@ -3,13 +3,12 @@ import React, { memo } from 'react';
 import { ModalType } from 'src/components/Modal/config';
 import { GenericModal } from 'src/components/Modal/components';
 import { Button } from 'src/components';
-import styles from './InternetConnectionErrorModal.styles';
+import styles from './SignInErrorModal.styles';
 
-export const InternetConnectionErrorModal = memo(({ onClose }) => (
+export const SignInErrorModal = memo(({ onClose, ...props }) => (
   <GenericModal
+    {...props}
     type={ModalType.Error}
-    title="Connection error"
-    text="You are offline, to proceed please connect to the internet."
     buttons={
       <Button
         title="Ok"
@@ -21,4 +20,4 @@ export const InternetConnectionErrorModal = memo(({ onClose }) => (
   />
 ));
 
-InternetConnectionErrorModal.displayName = 'InternetConnectionErrorModal';
+SignInErrorModal.displayName = 'SignInErrorModal';
