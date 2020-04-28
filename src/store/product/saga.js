@@ -10,17 +10,17 @@ function* fetchProductDetails({ payload: { productId } }) {
 
   try {
     const {
-      data: { thumbnail, name, price, special, description }
+      data: { name: title, price, special, description, thumbnail }
     } = yield call([Products, 'getProductDetails'], productId);
 
     yield put(
       productActions.updateDetails({
         data: {
-          name,
+          title,
           description,
           price: special || price,
           oldPrice: special ? price : null,
-          images: [`http:${thumbnail}`]
+          imageUris: [`http:${thumbnail}`]
         }
       })
     );

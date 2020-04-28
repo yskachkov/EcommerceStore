@@ -10,8 +10,8 @@ class AuthenticationController {
     userData.append('password', password);
 
     return HttpService({
-      url: `${this.baseURL}/login`,
       method: 'post',
+      url: `${this.baseURL}/login`,
       data: userData
     });
   }
@@ -34,8 +34,8 @@ class AuthenticationController {
     authenticationData.append('token', token);
 
     return HttpService({
-      url: `${this.baseURL}/login`,
       method: 'post',
+      url: `${this.baseURL}/login`,
       data: authenticationData
     });
   }

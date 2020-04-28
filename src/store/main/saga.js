@@ -30,8 +30,8 @@ function* fetchCategories() {
     categories.forEach(({ category_id: id, name, thumb }) => {
       categoriesById[id] = {
         id,
-        thumb: `http:${thumb}`,
-        name: unescape(name)
+        title: unescape(name),
+        imageUri: `http:${thumb}`
       };
 
       allCategories.push(id);
@@ -71,13 +71,13 @@ function* fetchCategoryProducts({ categoryId, productLimit }) {
     const productsById = {};
     const allProducts = [];
 
-    products.forEach(({ id, cell: { name, price, special, thumb } }) => {
+    products.forEach(({ id, cell: { name: title, price, special, thumb } }) => {
       productsById[id] = {
         id,
-        name,
+        title,
         price: special || price,
         oldPrice: special ? price : null,
-        thumb: `http:${thumb}`,
+        imageUri: `http:${thumb}`,
         categoryId
       };
 

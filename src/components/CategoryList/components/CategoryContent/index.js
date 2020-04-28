@@ -5,17 +5,14 @@ import { ProductCard } from 'src/components';
 import styles from './CategoryContent.styles';
 
 export const CategoryContent = withMemo(({ data, onProductPress }) =>
-  data.map(({ id, name, price, oldPrice, thumb }) => {
+  data.map(({ id, ...itemProps }) => {
     const handleProductCardPress = () => onProductPress(id);
 
     return (
       <ProductCard
+        {...itemProps}
         key={id}
-        title={name}
-        price={price}
-        oldPrice={oldPrice}
-        imageUri={thumb}
-        containerStyle={styles.productListItem}
+        style={styles.productListItem}
         imageStyle={styles.productImage}
         onPress={handleProductCardPress}
       />

@@ -15,10 +15,10 @@ export const Button = memo(
     title,
     iconRight,
     icon,
-    disabled,
+    accessibilityRole = 'button',
     containerStyle,
     textStyle,
-    onPress
+    ...props
   }) => {
     const buttonTypes = Object.values(ButtonType);
 
@@ -30,11 +30,10 @@ export const Button = memo(
 
     return (
       <TouchableOpacity
-        disabled={disabled}
-        accessibilityRole="button"
+        {...props}
+        accessibilityRole={accessibilityRole}
         activeOpacity={BUTTON_ACTIVE_OPACITY}
         style={StyleSheet.flatten([styles[type], containerStyle])}
-        onPress={onPress}
       >
         {loading ? (
           <BlinkingText style={textStyle}>{loadingTitle}</BlinkingText>

@@ -5,12 +5,12 @@ import { withMemo } from 'src/HOCs';
 import { CategoryHeader, CategoryContent } from 'src/components/CategoryList/components';
 import styles from './CategoryItem.styles';
 
-export const CategoryItem = withMemo(({ id, name, products, onCategoryPress, onProductPress }) => {
+export const CategoryItem = withMemo(({ id, title, products, onCategoryPress, onProductPress }) => {
   const handleViewAllPress = useCallback(() => onCategoryPress(id), [id, onCategoryPress]);
 
   return (
     <View style={styles.container}>
-      <CategoryHeader title={name} onViewAll={handleViewAllPress} />
+      <CategoryHeader title={title} onViewAll={handleViewAllPress} />
       <View style={styles.contentContainer}>
         <CategoryContent data={products} onProductPress={onProductPress} />
       </View>

@@ -2,48 +2,45 @@ import React, { memo, useState, useEffect } from 'react';
 import { StyleSheet } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import Geolocation from '@react-native-community/geolocation';
-import isEmpty from 'lodash/isEmpty';
+import isEqual from 'lodash/isEqual';
 
 import { ScreenName } from 'src/constants/navigationScreenNames';
+import { DEFAULT_LOCATION } from './constants';
 import styles from './Map.styles';
 
-export const Map = memo(({ location, style, ...props }) => {
-  const [coordinate, setCoordinate] = useState(location);
-  const hasCoordinateToDisplay = !isEmpty(coordinate);
+export const Map = memo(
+  ({
+    route: {
+      params: { data: { location } = { location: DEFAULT_LOCATION } }
+    },
+    style,
+    ...props
+  }) => {
+    const [coordinate, setCoordinate] = useState(location);
 
-  useEffect(() => {
-    if (hasCoordinateToDisplay) {
-      return;
-    }
+    useEffect(() => {
+      const hasCoordinateToDisplay = !isEqual(location, DEFAULT_LOCATION);
 
-    Geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) =>
-      setCoordinate({
-        latitude,
-        longitude
-      })
+      if (hasCoordinateToDisplay) {
+        return;
+      }
+
+      Geolocation.getCurrentPosition(({ coords: { latitude, longitude } }) =>
+        setCoordinate({
+          ...coordinate,
+          latitude,
+          longitude
+        })
+      );
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
+    return (
+      <MapView {...props} region={coordinate} style={StyleSheet.flatten([styles.container, style])}>
+        <Marker coordinate={coordinate} />
+      </MapView>
     );
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!hasCoordinateToDisplay) {
-    return null;
   }
-
-  const initialRegion = {
-    ...coordinate,
-    latitudeDelta: 0.1,
-    longitudeDelta: 0.1
-  };
-
-  return (
-    <MapView
-      {...props}
-      initialRegion={initialRegion}
-      style={StyleSheet.flatten([styles.container, style])}
-    >
-      <Marker coordinate={coordinate} />
-    </MapView>
-  );
-});
+);
 
 Map.displayName = ScreenName.Map;

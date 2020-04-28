@@ -22,13 +22,13 @@ function* fetchProducts({ payload: { categoryId, limit } }) {
     const productsById = {};
     const allProducts = [];
 
-    products.forEach(({ id, cell: { name, price, thumb } }) => {
+    products.forEach(({ id, cell: { name: title, price, thumb } }) => {
       productsById[id] = {
         id,
-        name,
+        title,
         price,
         categoryId,
-        thumb: `http:${thumb}`
+        imageUri: `http:${thumb}`
       };
 
       allProducts.push(id);

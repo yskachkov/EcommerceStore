@@ -10,5 +10,7 @@ export const ScreenName = {
   CategoryProducts: 'CategoryProducts',
   Map: 'Map',
   MainDrawer: 'MainDrawer',
-  MainStack: 'MainStack'
+  AuthStack: 'AuthStack',
+  MainStack: 'MainStack',
+  OrdersStack: 'OrdersStack'
 };
