@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 
 import { ScreenName } from 'src/constants/navigationScreenNames';
@@ -9,16 +9,19 @@ import styles from './ProductDetails.styles';
 
 export const ProductDetails = memo(
   ({
-    data: { imageUris = [], title, oldPrice, price, description },
+    data: { id, imageUris = [], title, oldPrice, price, description },
     loading,
     fetchProductDetails,
     clearDetails,
+    addProductToCart,
     route: {
       params: {
         data: { productId }
       }
     }
   }) => {
+    const handleAddToCart = useCallback(() => addProductToCart({ id }), [id, addProductToCart]);
+
     useEffect(() => {
       fetchProductDetails({
         productId
@@ -47,7 +50,7 @@ export const ProductDetails = memo(
             )}
           </View>
         </View>
-        <Divider size={12} color={colors.gallery} />
+        <Divider size={12} />
         <ProductSection title="Description">
           <Text style={styles.description}>{description}</Text>
         </ProductSection>
@@ -60,6 +63,7 @@ export const ProductDetails = memo(
             title="Add To Cart"
             containerStyle={styles.button}
             textStyle={StyleSheet.flatten([styles.buttonText, styles.addToCartButton])}
+            onPress={handleAddToCart}
           />
         </View>
       </ScrollView>

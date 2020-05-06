@@ -15,8 +15,8 @@ export const GenericModal = memo(({ type, title, text, buttons }) => {
   return (
     <View style={styles.container}>
       <Icon {...iconConfig} size={60} style={styles.icon} />
-      <Text style={styles.title}>{title}</Text>
-      <Text style={styles.text}>{text}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
+      {text && <Text style={styles.text}>{text}</Text>}
       <View style={styles.buttonWrapper}>{buttons}</View>
     </View>
   );

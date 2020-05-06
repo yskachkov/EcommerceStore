@@ -4,14 +4,14 @@ class OrdersController {
   baseURL = 'account';
 
   getOrderHistory(token) {
-    const authenticationData = new FormData();
+    const requestData = new FormData();
 
-    authenticationData.append('token', token);
+    requestData.append('token', token);
 
     return HttpService({
       method: 'post',
       url: `${this.baseURL}/history`,
-      data: authenticationData
+      data: requestData
     });
   }
 }

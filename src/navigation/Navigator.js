@@ -26,7 +26,7 @@ export const Navigator = memo(
     });
 
     if (authenticationLoading) {
-      return <LoadingSpinner size={70} />;
+      return <LoadingSpinner />;
     }
 
     return (

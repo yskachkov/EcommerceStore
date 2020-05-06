@@ -8,6 +8,7 @@ import {
   getProductsLoading
 } from 'src/store/main/selectors';
 import { mainActions } from 'src/store/main';
+import { fetchCheckoutData } from 'src/store/checkout';
 import { Main } from './Main';
 
 const mapStateToProps = state => ({
@@ -19,7 +20,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionCreatorsToProps = {
-  ...mainActions
+  ...mainActions,
+  fetchCheckoutData
 };
 
 export const MainScreen = connect(mapStateToProps, mapActionCreatorsToProps)(Main);

@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
+import { ScreenName } from 'src/constants/navigationScreenNames';
 import { Header } from 'src/components';
 
 export const ScreenHeader = ({
@@ -9,9 +10,11 @@ export const ScreenHeader = ({
       options: { title: optionsTitle, headerTransparent }
     }
   },
-  navigation: { goBack, toggleDrawer }
+  navigation: { navigate, goBack, toggleDrawer }
 }) => {
   const title = optionsTitle || paramsTitle;
+
+  const handleCartPress = useCallback(() => navigate(ScreenName.Cart), [navigate]);
 
   return (
     <Header
@@ -20,6 +23,9 @@ export const ScreenHeader = ({
       transparent={headerTransparent}
       onBackButtonPress={goBack}
       onDrawerToggle={toggleDrawer}
+      onCartPress={handleCartPress}
     />
   );
 };
+
+ScreenHeader.displayName = 'ScreenHeader';

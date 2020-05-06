@@ -5,4 +5,6 @@ export * from './ProductDetails';
 export * from './CategoryProducts';
 export * from './Map';
 export * from './Orders';
+export * from './Cart';
+export * from './OrderConfirmation';
 export * from './DummyScreen';
