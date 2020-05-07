@@ -1,4 +1,4 @@
-package com.reactlibrary;
+package com.toast;
 
 import android.content.Context;
 import android.view.Gravity;
@@ -47,15 +47,13 @@ public class ToastModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void show(String message, int duration) {
-        Context context = getReactApplicationContext();
-
-        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) this.reactContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View layout = inflater.inflate(R.layout.custom_toast, null);
 
         TextView text = layout.findViewById(R.id.text);
         text.setText(message);
 
-        Toast toast = new Toast(context);
+        Toast toast = new Toast(this.reactContext);
         toast.setGravity(Gravity.BOTTOM, 0, 180);
         toast.setDuration(duration);
         toast.setView(layout);

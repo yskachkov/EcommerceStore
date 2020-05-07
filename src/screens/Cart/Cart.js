@@ -18,6 +18,7 @@ export const Cart = memo(
     loading,
     fetchCheckoutData,
     removeProductFromCart,
+    refreshCheckoutData,
     completeOrder,
     navigation: { navigate }
   }) => {
@@ -34,6 +35,10 @@ export const Cart = memo(
         onSuccess: () => navigate(ScreenName.OrderConfirmation)
       });
     }, [completeOrder, navigate]);
+
+    const handleProductListRefresh = useCallback(() => refreshCheckoutData(), [
+      refreshCheckoutData
+    ]);
 
     useEffect(() => {
       if (!isEmpty(products)) {
@@ -68,9 +73,11 @@ export const Cart = memo(
       <View style={styles.container}>
         <ProductList
           data={products}
+          refreshing={loading}
           ListFooterComponent={<PriceDetails totalQuantity={totalQuantity} total={total} />}
           style={styles.productList}
           onProductRemove={handleProductRemove}
+          onRefresh={handleProductListRefresh}
         />
         <View style={styles.paymentContainer}>
           <PaymentSecurity />
