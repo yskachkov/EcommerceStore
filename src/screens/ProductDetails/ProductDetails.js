@@ -2,7 +2,6 @@ import React, { memo, useCallback, useEffect } from 'react';
 import { StyleSheet, ScrollView, View, Text } from 'react-native';
 
 import { ScreenName } from 'src/constants/navigationScreenNames';
-import { colors } from 'src/assets/styles/colors';
 import { ImageSwiper, Divider, Button, LikeButton, LoadingSpinner } from 'src/components';
 import { ProductSection } from './components';
 import styles from './ProductDetails.styles';

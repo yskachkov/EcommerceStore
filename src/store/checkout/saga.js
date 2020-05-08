@@ -1,10 +1,11 @@
 import { Alert } from 'react-native';
 import { takeLatest, call, put, select } from 'redux-saga/effects';
 import get from 'lodash/get';
+import find from 'lodash/find';
 
 import { getState } from 'src/store/user/selectors';
 import { ModalName } from 'src/components/Modal/config';
-import { Toasts } from 'src/services/toasts';
+import { Toasts, PushNotification } from 'src/services';
 import { Checkout } from 'src/controllers';
 import { modalActions } from 'src/store/modal';
 import { extractCheckoutData } from './utils';
@@ -42,19 +43,13 @@ function* addProductToCart({ payload: { id } }) {
   try {
     const { data } = yield call([Checkout, 'addProductToCart'], { token, id });
 
+    const checkoutData = extractCheckoutData(data);
+
     yield put(
       checkoutActions.updateCheckoutData({
-        data: extractCheckoutData(data)
+        data: checkoutData
       })
     );
-  } catch (error) {
-    const errorMessage = get(error, 'response.data.error', error);
-
-    yield call(Alert.alert, 'Product addition fetch error', errorMessage);
-  } finally {
-    yield call(Toasts.hide);
-
-    yield put(checkoutActions.endLoading());
 
     yield put(
       modalActions.showModal({
@@ -64,6 +59,21 @@ function* addProductToCart({ payload: { id } }) {
         }
       })
     );
+
+    const { title } = find(checkoutData.products, { id });
+
+    yield call([PushNotification, 'show'], {
+      title: 'New product in cart',
+      message: title
+    });
+  } catch (error) {
+    const errorMessage = get(error, 'response.data.error', error);
+
+    yield call(Alert.alert, 'Product addition fetch error', errorMessage);
+  } finally {
+    yield call(Toasts.hide);
+
+    yield put(checkoutActions.endLoading());
   }
 }
 
