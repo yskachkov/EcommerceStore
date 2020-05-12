@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Button component renders correctly for type clear 1`] = `
+<TouchableOpacity
+  accessibilityRole="button"
+  activeOpacity={0.5}
+  style={
+    Object {
+      "alignItems": "center",
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "padding": 10,
+    }
+  }
+/>
+`;
+
+exports[`Button component renders correctly for type outline 1`] = `
+<TouchableOpacity
+  accessibilityRole="button"
+  activeOpacity={0.5}
+  style={
+    Object {
+      "alignItems": "center",
+      "borderColor": "#318cbf",
+      "borderStyle": "solid",
+      "borderWidth": 1,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "padding": 10,
+    }
+  }
+/>
+`;
+
+exports[`Button component renders correctly for type solid 1`] = `
+<TouchableOpacity
+  accessibilityRole="button"
+  activeOpacity={0.5}
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#318cbf",
+      "elevation": 3,
+      "flexDirection": "row",
+      "justifyContent": "center",
+      "padding": 10,
+      "shadowColor": "#000000",
+      "shadowOffset": Object {
+        "height": 2,
+        "width": 0,
+      },
+      "shadowOpacity": 0.25,
+      "shadowRadius": 3.84,
+    }
+  }
+/>
+`;

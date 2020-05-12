@@ -1,0 +1,77 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NonAuthorized component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "alignItems": "center",
+      "backgroundColor": "#ffffff",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    style={
+      Object {
+        "backgroundColor": "#318cbf",
+        "borderRadius": 7,
+        "padding": 10,
+      }
+    }
+  >
+    <IconClass
+      brand={false}
+      color="#ffffff"
+      light={false}
+      name="user-shield"
+      regular={false}
+      size={100}
+      solid={false}
+    />
+  </View>
+  <Text
+    style={
+      Object {
+        "color": "#575757",
+        "fontSize": 20,
+        "fontWeight": "700",
+        "marginTop": 5,
+      }
+    }
+  >
+    Login first!
+  </Text>
+  <Text
+    style={
+      Object {
+        "color": "#575757",
+        "fontSize": 16,
+      }
+    }
+  >
+    Login first to view the screen
+  </Text>
+  <Button
+    containerStyle={
+      Object {
+        "marginTop": 30,
+      }
+    }
+    onPress={[Function]}
+    textStyle={
+      Object {
+        "color": "#ffffff",
+        "fontSize": 16,
+        "textAlign": "center",
+        "width": 200,
+      }
+    }
+    title="Login Now"
+  />
+  <Link
+    onPress={[Function]}
+    title="New here? Sign Up"
+  />
+</View>
+`;

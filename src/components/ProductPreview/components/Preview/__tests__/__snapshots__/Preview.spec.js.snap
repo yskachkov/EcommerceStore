@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Preview component renders correctly 1`] = `
+<Component
+  imageUri="image uri"
+  onPress={[MockFunction]}
+  title="dummy title"
+/>
+`;

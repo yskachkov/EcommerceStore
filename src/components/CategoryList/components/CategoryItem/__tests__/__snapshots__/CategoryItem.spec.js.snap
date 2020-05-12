@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryItem component renders correctly 1`] = `
+<Component
+  id="dummy-id"
+  onCategoryPress={[MockFunction]}
+  onProductPress={[MockFunction]}
+  products={Array []}
+  title="dummy title"
+/>
+`;

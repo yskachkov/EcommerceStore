@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BlinkingText component renders correctly 1`] = `
+<AnimatedComponent
+  style={
+    Object {
+      "opacity": 1,
+    }
+  }
+>
+  Dummy text
+</AnimatedComponent>
+`;

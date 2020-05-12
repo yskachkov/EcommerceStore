@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TouchableText component renders correctly 1`] = `
+<AnimatedComponent
+  onLongPress={[Function]}
+  style={
+    Object {
+      "transform": Array [
+        Object {
+          "scale": 1,
+        },
+      ],
+    }
+  }
+>
+  Dummy text
+</AnimatedComponent>
+`;

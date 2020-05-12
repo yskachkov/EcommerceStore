@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoadingSpinner component renders correctly with default props 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="#318cbf"
+  hidesWhenStopped={true}
+  size={60}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;
+
+exports[`LoadingSpinner component renders correctly with with passed props 1`] = `
+<ActivityIndicator
+  animating={true}
+  color="#000"
+  hidesWhenStopped={true}
+  size={10}
+  style={
+    Object {
+      "flex": 1,
+    }
+  }
+/>
+`;

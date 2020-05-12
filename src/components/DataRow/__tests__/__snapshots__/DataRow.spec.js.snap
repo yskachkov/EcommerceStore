@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DataRow component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "flexDirection": "row",
+      "justifyContent": "space-between",
+    }
+  }
+>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "fontSize": 15,
+      }
+    }
+  >
+    dummy label
+  </Text>
+  <Text
+    numberOfLines={1}
+    style={
+      Object {
+        "fontSize": 15,
+      }
+    }
+  >
+    dummy value
+  </Text>
+</View>
+`;

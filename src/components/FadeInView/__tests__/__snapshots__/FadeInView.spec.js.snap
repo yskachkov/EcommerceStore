@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FadeInView component renders correctly 1`] = `
+<AnimatedComponent
+  style={
+    Object {
+      "opacity": 0,
+      "transform": Array [
+        Object {
+          "translateY": -1000,
+        },
+      ],
+    }
+  }
+>
+  <Text>
+    Dummy children
+  </Text>
+</AnimatedComponent>
+`;

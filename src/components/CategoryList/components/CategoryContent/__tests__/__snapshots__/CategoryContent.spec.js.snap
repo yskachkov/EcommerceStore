@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CategoryContent component renders correctly 1`] = `
+<Component
+  data={
+    Array [
+      Object {
+        "id": "dummy-id",
+        "itemProp": "dummy prop",
+      },
+    ]
+  }
+/>
+`;

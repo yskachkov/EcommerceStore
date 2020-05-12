@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Input component renders correctly 1`] = `
+<View
+  style={
+    Object {
+      "justifyContent": "center",
+      "position": "relative",
+    }
+  }
+>
+  <Text
+    style={
+      Object {
+        "left": 30,
+        "position": "absolute",
+        "zIndex": 1,
+      }
+    }
+  />
+  <TextInput
+    allowFontScaling={true}
+    name="dummy-name"
+    onChangeText={[MockFunction]}
+    placeholder="dummy placeholder"
+    placeholderTextColor="#000000"
+    rejectResponderTermination={true}
+    underlineColorAndroid="transparent"
+    value="dummy value"
+  />
+</View>
+`;

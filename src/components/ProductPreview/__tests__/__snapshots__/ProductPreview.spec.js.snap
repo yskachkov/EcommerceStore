@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProductPreview component renders correctly 1`] = `
+<Component
+  data={
+    Array [
+      Object {
+        "title": "dummy title",
+      },
+    ]
+  }
+  onPress={[MockFunction]}
+/>
+`;

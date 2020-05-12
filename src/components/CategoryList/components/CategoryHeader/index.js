@@ -5,7 +5,7 @@ import { withMemo } from 'src/HOCs';
 import { Button } from 'src/components';
 import styles from './CategoryHeader.styles';
 
-export const CategoryHeader = withMemo(({ title, onViewAll, style }) => (
+export const CategoryHeader = withMemo(({ title, style, onViewAll }) => (
   <View style={StyleSheet.flatten([styles.container, style])}>
     <Text style={styles.title}>{title}</Text>
     <Button
