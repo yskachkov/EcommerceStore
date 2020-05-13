@@ -9,7 +9,8 @@
     "clean-start": "react-native start --reset-cache",
     "test": "jest",
     "lint": "eslint .",
-    "prettier": "prettier \"src/**/*.{js,jsx,test.js,spec.js}\" --write"
+    "prettier": "prettier \"src/**/*.{js,jsx,test.js,spec.js}\" --write",
+    "storybook": "start-storybook -p 7007"
   },
   "dependencies": {
     "@react-native-community/geolocation": "2.0.2",
@@ -51,7 +52,13 @@
     "@babel/plugin-proposal-optional-chaining": "^7.9.0",
     "@babel/runtime": "^7.6.2",
     "@react-native-community/eslint-config": "^0.0.5",
+    "@storybook/addon-actions": "^5.3.18",
+    "@storybook/addon-links": "^5.3.18",
+    "@storybook/addons": "^5.3.18",
+    "@storybook/react-native": "^5.3.18",
+    "@storybook/react-native-server": "^5.3.18",
     "babel-jest": "^25.3.0",
+    "babel-loader": "^8.1.0",
     "babel-plugin-module-resolver": "^4.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
@@ -65,7 +72,8 @@
     "lint-staged": "^10.0.8",
     "metro-react-native-babel-preset": "^0.56.0",
     "mockdate": "^2.0.5",
-    "prettier": "^1.19.1"
+    "prettier": "^1.19.1",
+    "react-native-dev-menu": "^4.0.1"
   },
   "jest": {
     "preset": "react-native",

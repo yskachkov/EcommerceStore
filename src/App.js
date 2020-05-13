@@ -14,11 +14,9 @@ if (isAndroidPlatform()) {
   UIManager?.setLayoutAnimationEnabledExperimental(true);
 }
 
-const App = () => (
+export const App = () => (
   <Provider store={store}>
     <Navigator />
     <Modal />
   </Provider>
 );
-
-export default App;
