@@ -1,12 +1,12 @@
 import React, { memo } from 'react';
-import LinearGradient from 'react-native-linear-gradient';
+import { View } from 'react-native';
 
 import { gradientColors, gradientLocations } from './config';
 
 export const GradientView = memo(({ children, ...props }) => (
-  <LinearGradient colors={gradientColors} locations={gradientLocations} {...props}>
+  <View colors={gradientColors} locations={gradientLocations} {...props}>
     {children}
-  </LinearGradient>
+  </View>
 ));
 
 GradientView.displayName = 'GradientView';

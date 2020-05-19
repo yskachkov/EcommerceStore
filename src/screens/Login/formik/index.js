@@ -1,3 +1,4 @@
+import { Alert } from 'react-native';
 import { httpService } from 'src/services/httpService';
 
 export const formikConfig = {
@@ -15,10 +16,10 @@ export const formikConfig = {
         data
       });
 
-      alert(`Welcome back ${login}!`);
+      Alert.alert(`Welcome back ${login}!`);
       resetForm();
     } catch {
-      alert('Wrong login or password');
+      Alert.alert('Wrong login or password');
     }
 
     setSubmitting(false);
