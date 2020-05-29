@@ -1,6 +1,7 @@
+import Keychain from 'react-native-keychain';
 import isEmpty from 'lodash/isEmpty';
 
-import { Storage } from 'src/services';
+import { name as appName } from 'app.json';
 
 class SessionService {
   _token = null;
@@ -12,7 +13,7 @@ class SessionService {
       return token;
     }
 
-    const restoredToken = await Storage.get('userToken');
+    const { password: restoredToken = null } = await Keychain.getGenericPassword();
 
     this.setToken(restoredToken);
 
@@ -24,19 +25,15 @@ class SessionService {
   }
 
   async updateToken(token) {
-    const setResult = await Storage.set('userToken', token);
+    await Keychain.setGenericPassword(appName, token);
 
     this.setToken(token);
-
-    return setResult;
   }
 
   async clearToken() {
-    const removeResult = await Storage.remove('userToken');
+    await Keychain.resetGenericPassword();
 
     this.setToken(null);
-
-    return removeResult;
   }
 }
 

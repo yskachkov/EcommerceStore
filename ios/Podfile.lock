@@ -1,4 +1,22 @@
 PODS:
+  - appcenter-analytics (3.0.2):
+    - AppCenter/Analytics
+    - AppCenterReactNativeShared
+    - React
+  - appcenter-core (3.0.2):
+    - AppCenterReactNativeShared
+    - React
+  - appcenter-crashes (3.0.2):
+    - AppCenter/Crashes
+    - AppCenterReactNativeShared
+    - React
+  - AppCenter/Analytics (3.1.1):
+    - AppCenter/Core
+  - AppCenter/Core (3.1.1)
+  - AppCenter/Crashes (3.1.1):
+    - AppCenter/Core
+  - AppCenterReactNativeShared (3.0.2):
+    - AppCenter/Core (= 3.1.1)
   - boost-for-react-native (1.63.0)
   - BVLinearGradient (2.5.6):
     - React
@@ -190,8 +208,6 @@ PODS:
     - React
   - react-native-netinfo (5.7.0):
     - React
-  - react-native-persistent-storage (1.0.0):
-    - React
   - react-native-safe-area-context (0.7.3):
     - React
   - react-native-toast (1.0.0):
@@ -233,7 +249,13 @@ PODS:
     - ReactCommon/jscallinvoker (= 0.61.5)
   - RNCMaskedView (0.1.7):
     - React
+  - RNDevMenu (4.0.1):
+    - React-Core
+    - React-Core/DevSupport
+    - React-RCTNetwork
   - RNGestureHandler (1.6.1):
+    - React
+  - RNKeychain (6.0.0):
     - React
   - RNReanimated (1.7.1):
     - React
@@ -246,6 +268,9 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - appcenter-analytics (from `../node_modules/appcenter-analytics/ios`)
+  - appcenter-core (from `../node_modules/appcenter/ios`)
+  - appcenter-crashes (from `../node_modules/appcenter-crashes/ios`)
   - BVLinearGradient (from `../node_modules/react-native-linear-gradient`)
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
@@ -266,7 +291,6 @@ DEPENDENCIES:
   - "react-native-geolocation (from `../node_modules/@react-native-community/geolocation`)"
   - react-native-maps (from `../node_modules/react-native-maps`)
   - "react-native-netinfo (from `../node_modules/@react-native-community/netinfo`)"
-  - react-native-persistent-storage (from `../libs/react-native-persistent-storage`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-toast (from `../libs/react-native-toast`)
   - React-RCTActionSheet (from `../node_modules/react-native/Libraries/ActionSheetIOS`)
@@ -281,7 +305,9 @@ DEPENDENCIES:
   - ReactCommon/jscallinvoker (from `../node_modules/react-native/ReactCommon`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
+  - RNDevMenu (from `../node_modules/react-native-dev-menu`)
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNKeychain (from `../node_modules/react-native-keychain`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNShare (from `../node_modules/react-native-share`)
@@ -290,9 +316,17 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AppCenter
+    - AppCenterReactNativeShared
     - boost-for-react-native
 
 EXTERNAL SOURCES:
+  appcenter-analytics:
+    :path: "../node_modules/appcenter-analytics/ios"
+  appcenter-core:
+    :path: "../node_modules/appcenter/ios"
+  appcenter-crashes:
+    :path: "../node_modules/appcenter-crashes/ios"
   BVLinearGradient:
     :path: "../node_modules/react-native-linear-gradient"
   DoubleConversion:
@@ -329,8 +363,6 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-maps"
   react-native-netinfo:
     :path: "../node_modules/@react-native-community/netinfo"
-  react-native-persistent-storage:
-    :path: "../libs/react-native-persistent-storage"
   react-native-safe-area-context:
     :path: "../node_modules/react-native-safe-area-context"
   react-native-toast:
@@ -357,8 +389,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
+  RNDevMenu:
+    :path: "../node_modules/react-native-dev-menu"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNKeychain:
+    :path: "../node_modules/react-native-keychain"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -371,6 +407,11 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AppCenter: 513d32888854d67d8cfbd3a8db16aeb5fb2e2a75
+  appcenter-analytics: f819aa9bd41c43b8b9ae53aa5dfd862b48a65f50
+  appcenter-core: 74a3db7d48a720fc3a70e0cf5cbda720decac008
+  appcenter-crashes: 0aea510872e4f9186553941b75ba0e9e6c7d9e07
+  AppCenterReactNativeShared: c4eb2ad593c32fbc2fc5f2ea9f5cf1faae61c182
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   BVLinearGradient: e3aad03778a456d77928f594a649e96995f1c872
   DoubleConversion: 5805e889d232975c086db112ece9ed034df7a0b2
@@ -390,7 +431,6 @@ SPEC CHECKSUMS:
   react-native-geolocation: cbd9d6bd06bac411eed2671810f454d4908484a8
   react-native-maps: f4b89da81626ad7f151a8bfcb79733295d31ce5c
   react-native-netinfo: 61a837131d5f0194d22f8048a456d8f31a074baa
-  react-native-persistent-storage: b7b54f994a0f11e9d2fe8aa5201d7993c1a7f31f
   react-native-safe-area-context: 8260e5157617df4b72865f44006797f895b2ada7
   react-native-toast: 818ec98742c252e8dbd2737a2c93850cd2f66bcc
   React-RCTActionSheet: 600b4d10e3aea0913b5a92256d2719c0cdd26d76
@@ -404,13 +444,15 @@ SPEC CHECKSUMS:
   React-RCTVibration: a49a1f42bf8f5acf1c3e297097517c6b3af377ad
   ReactCommon: 198c7c8d3591f975e5431bec1b0b3b581aa1c5dd
   RNCMaskedView: 90dd32f5b786bd562e876e1421ea77c700cbf71e
+  RNDevMenu: 753e1b921505bbb76e2e8979a0be541b658c164c
   RNGestureHandler: 8f09cd560f8d533eb36da5a6c5a843af9f056b38
+  RNKeychain: bf2d7e9a0ae7a073c07770dd2aa6d11c67581733
   RNReanimated: 4e102df74a9674fa943e05f97f3362b6e44d0b48
   RNScreens: b5c0e1b2b04512919e78bd3898e144a157ce2363
   RNShare: 13f1b72aab353c3092b30dce99d212871bb2a8a1
   RNVectorIcons: 0bb4def82230be1333ddaeee9fcba45f0b288ed4
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: 641a514e1e996771db84bb2246b67ea8e64c9094
+PODFILE CHECKSUM: 672e8e9a22b301e4bb521c12af089ed00ef83928
 
 COCOAPODS: 1.9.1

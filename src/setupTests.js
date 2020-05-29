@@ -7,11 +7,10 @@ jest.mock('react-native/Libraries/Animated/src/NativeAnimatedHelper');
 
 jest.mock('react-native-reanimated', () => mockReactNativeReanimated);
 
-jest.mock('react-native-persistent-storage', () => ({
-  get: jest.fn((...args) => Promise.resolve(...args)),
-  set: jest.fn((...args) => Promise.resolve(...args)),
-  remove: jest.fn((...args) => Promise.resolve(...args)),
-  clear: jest.fn((...args) => Promise.resolve(...args))
+jest.mock('react-native-keychain', () => ({
+  setGenericPassword: jest.fn(),
+  getGenericPassword: jest.fn(),
+  resetGenericPassword: jest.fn()
 }));
 
 jest.mock('react-native-toast', () => ({
