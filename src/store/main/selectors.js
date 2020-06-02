@@ -36,13 +36,13 @@ export const getCategoriesSections = createSelector(
     const productList = Object.values(productsById);
 
     return allCategories.reduce((sections, categoryId) => {
-      const { id, name } = categoriesById[categoryId];
+      const { id, title } = categoriesById[categoryId];
       const categoryProducts = productList.filter(({ categoryId }) => categoryId === id);
 
       if (!isEmpty(categoryProducts)) {
         sections.push({
           id,
-          name,
+          title,
           products: categoryProducts
         });
       }

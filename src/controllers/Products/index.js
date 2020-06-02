@@ -1,24 +1,24 @@
 import { stringify } from 'query-string';
 
-import { httpService } from 'src/services/httpService';
+import { HttpService } from 'src/services';
 
 class ProductsController {
   baseURL = 'product';
 
   getCategoriesList() {
-    return httpService({
+    return HttpService({
       url: `${this.baseURL}/category&category_id=0`
     });
   }
 
   getCategoryProducts(filter) {
-    return httpService({
+    return HttpService({
       url: `${this.baseURL}/filter&${stringify(filter)}`
     });
   }
 
   getProductDetails(productId) {
-    return httpService({
+    return HttpService({
       url: `${this.baseURL}/product&product_id=${productId}`
     });
   }

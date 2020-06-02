@@ -22,13 +22,15 @@ export const ProductPreview = withMemo(({ data, keyProperty = 'id', style, onPre
     [data, onPress]
   );
 
+  const keyExtractor = useCallback(({ [keyProperty]: keyValue }) => keyValue, [keyProperty]);
+
   return (
     <FlatList
       {...props}
       horizontal
       data={data}
       renderItem={renderItem}
-      keyExtractor={item => item[keyProperty]}
+      keyExtractor={keyExtractor}
       contentContainerStyle={StyleSheet.flatten([styles.previewList, style])}
     />
   );

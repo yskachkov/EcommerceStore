@@ -1,51 +1,20 @@
-import React, { memo, useCallback } from 'react';
-import { View, FlatList } from 'react-native';
+import React, { memo } from 'react';
 
-import { ListRefreshControl, ProductCard } from 'src/components';
+import { CardList, ProductCard } from 'src/components';
 
-export const ProductList = memo(
-  ({
-    refreshing,
-    containerStyle,
-    listItemStyle,
-    productImageStyle,
-    onProductPress,
-    onRefresh,
-    ...props
-  }) => {
-    const renderItem = useCallback(
-      ({ item: { id, name, price, oldPrice, thumb } }) => {
-        const handleProductCardPress = () => onProductPress(id);
+export const ProductList = memo(({ imageStyle, onProductPress, ...props }) => {
+  const productCardProps = {
+    imageStyle
+  };
 
-        return (
-          <ProductCard
-            key={id}
-            title={name}
-            price={price}
-            oldPrice={oldPrice}
-            imageUri={thumb}
-            containerStyle={listItemStyle}
-            imageStyle={productImageStyle}
-            onPress={handleProductCardPress}
-          />
-        );
-      },
-      [listItemStyle, onProductPress, productImageStyle]
-    );
-
-    const keyExtractor = useCallback(({ id }) => id, []);
-
-    return (
-      <View style={containerStyle}>
-        <FlatList
-          {...props}
-          renderItem={renderItem}
-          keyExtractor={keyExtractor}
-          refreshControl={<ListRefreshControl refreshing={refreshing} onRefresh={onRefresh} />}
-        />
-      </View>
-    );
-  }
-);
+  return (
+    <CardList
+      {...props}
+      listItemComponent={ProductCard}
+      listItemComponentProps={productCardProps}
+      onCardPress={onProductPress}
+    />
+  );
+});
 
 ProductList.displayName = 'ProductList';

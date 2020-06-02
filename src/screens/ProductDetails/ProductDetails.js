@@ -9,7 +9,7 @@ import styles from './ProductDetails.styles';
 
 export const ProductDetails = memo(
   ({
-    data: { images = [], name, oldPrice, price, description },
+    data: { imageUris = [], title, oldPrice, price, description },
     loading,
     fetchProductDetails,
     clearDetails,
@@ -35,8 +35,8 @@ export const ProductDetails = memo(
     return (
       <ScrollView>
         <View style={styles.mainInformationContainer}>
-          <ImageSwiper height={320} images={images} />
-          <Text style={styles.title}>{name}</Text>
+          <ImageSwiper height={320} images={imageUris} />
+          <Text style={styles.title}>{title}</Text>
           <View style={styles.priceContainer}>
             <Text style={styles.price}>{price}</Text>
             {oldPrice && (

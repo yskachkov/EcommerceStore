@@ -6,7 +6,7 @@ const httpClient = axios.create({
   baseURL: APP_URL
 });
 
-export const httpService = params => {
+export const HttpService = params => {
   const { token: cancelToken, cancel } = CancelToken.source();
 
   const request = httpClient({

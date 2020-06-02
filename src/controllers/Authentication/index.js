@@ -1,6 +1,4 @@
-import AsyncStorage from '@react-native-community/async-storage';
-
-import { httpService } from 'src/services/httpService';
+import { HttpService, Session } from 'src/services';
 
 class AuthenticationController {
   baseURL = 'account';
@@ -11,23 +9,23 @@ class AuthenticationController {
     userData.append('loginname', login);
     userData.append('password', password);
 
-    return httpService({
-      url: `${this.baseURL}/login`,
+    return HttpService({
       method: 'post',
+      url: `${this.baseURL}/login`,
       data: userData
     });
   }
 
   updateToken(token) {
-    return AsyncStorage.setItem('userToken', token);
+    Session.updateToken(token);
   }
 
   restoreToken() {
-    return AsyncStorage.getItem('userToken');
+    return Session.getToken();
   }
 
   clearToken() {
-    return AsyncStorage.removeItem('userToken');
+    Session.clearToken();
   }
 
   authenticate(token) {
@@ -35,9 +33,9 @@ class AuthenticationController {
 
     authenticationData.append('token', token);
 
-    return httpService({
-      url: `${this.baseURL}/login`,
+    return HttpService({
       method: 'post',
+      url: `${this.baseURL}/login`,
       data: authenticationData
     });
   }

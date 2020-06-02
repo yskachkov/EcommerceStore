@@ -1,20 +1,19 @@
-import React, { memo, useCallback } from 'react';
+import React, { memo } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { ScreenName } from 'src/constants/navigationScreenNames';
+import { GenericNavigator } from 'src/navigation/navigators';
 import { navigatorScreenConfigs } from './config';
 
 const { Navigator, Screen } = createStackNavigator();
 
-export const AuthStack = memo(() => {
-  const renderNavigatorScreens = useCallback(
-    () =>
-      navigatorScreenConfigs.map(({ name, component, props = {} }) => (
-        <Screen key={name} name={name} component={component} {...props} />
-      )),
-    []
-  );
+export const AuthStack = memo(() => (
+  <GenericNavigator
+    navigator={Navigator}
+    screen={Screen}
+    headerMode="none"
+    screenConfigs={navigatorScreenConfigs}
+  />
+));
 
-  return <Navigator headerMode="none">{renderNavigatorScreens()}</Navigator>;
-});
-
-AuthStack.displayName = 'AuthStack';
+AuthStack.displayName = ScreenName.AuthStack;

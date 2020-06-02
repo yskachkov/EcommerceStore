@@ -40,10 +40,10 @@ export const Main = memo(
 
     const handleCategoryPress = useCallback(
       categoryId => {
-        const { name } = categories[categoryId];
+        const { title } = categories[categoryId];
 
         navigate(ScreenName.CategoryProducts, {
-          title: name,
+          title,
           data: {
             categoryId
           }
