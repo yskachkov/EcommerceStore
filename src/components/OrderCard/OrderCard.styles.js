@@ -4,14 +4,11 @@ import { colors } from 'src/assets/styles/colors';
 
 export default StyleSheet.create({
   container: {
-    flexWrap: 'wrap',
+    flexDirection: 'column',
     paddingVertical: 15,
-    paddingHorizontal: 10
+    paddingHorizontal: 15
   },
   row: {
-    flexBasis: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     marginBottom: 10
   },
   rowLabel: {
@@ -19,7 +16,6 @@ export default StyleSheet.create({
     fontSize: 18
   },
   rowValue: {
-    width: 180,
     fontSize: 18
   }
 });

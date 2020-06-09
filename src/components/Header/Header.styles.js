@@ -47,5 +47,20 @@ export default StyleSheet.create({
     borderRadius: 7,
     backgroundColor: 'white',
     fontSize: 16
+  },
+  cartContainer: {
+    position: 'relative'
+  },
+  cartTotalQuantity: {
+    position: 'absolute',
+    top: -10,
+    right: -10,
+    width: 25,
+    height: 25,
+    lineHeight: 25,
+    textAlign: 'center',
+    borderRadius: 25 / 2,
+    color: colors.white,
+    backgroundColor: colors.red
   }
 });

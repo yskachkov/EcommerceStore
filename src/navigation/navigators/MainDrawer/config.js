@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ScreenName } from 'src/constants/navigationScreenNames';
-import { OrdersStack, MainStack } from 'src/navigation/navigators';
+import { MainStack, OrdersStack, CartStack } from 'src/navigation/navigators';
 import { DummyScreen } from 'src/screens';
 import { Drawer } from 'src/components';
 import { DrawerItemIcon } from 'src/components/Drawer/components';
@@ -33,10 +33,11 @@ export const navigatorScreenConfigs = [
   },
   {
     name: ScreenName.Cart,
-    component: DummyScreen,
+    component: CartStack,
     options: {
       drawerLabel: 'My Cart',
-      drawerIcon: renderDrawerItemIcon('shopping-cart')
+      drawerIcon: renderDrawerItemIcon('shopping-cart'),
+      unmountOnBlur: true
     }
   },
   {

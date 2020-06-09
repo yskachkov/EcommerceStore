@@ -34,7 +34,7 @@ export const NonAuthorized = memo(({ navigate, style }) => {
         <Icon name="user-shield" size={100} color={colors.white} />
       </View>
       <Text style={styles.title}>Login first!</Text>
-      <Text style={styles.text}>To view the screen please login first</Text>
+      <Text style={styles.text}>Login first to view the screen</Text>
       <Button
         title="Login Now"
         containerStyle={styles.loginButtonContainer}

@@ -9,8 +9,10 @@ export const ScreenName = {
   Orders: 'Orders',
   CategoryProducts: 'CategoryProducts',
   Map: 'Map',
+  OrderConfirmation: 'OrderConfirmation',
   MainDrawer: 'MainDrawer',
   AuthStack: 'AuthStack',
   MainStack: 'MainStack',
-  OrdersStack: 'OrdersStack'
+  OrdersStack: 'OrdersStack',
+  CartStack: 'CartStack'
 };

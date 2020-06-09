@@ -6,6 +6,7 @@ export const colors = {
   doveGray: '#737373',
   grey: '#808080',
   silverChalice: '#9e9e9e',
+  pumice: '#c7c8c7',
   alto: '#dedede',
   gallery: '#ebebeb',
   white: '#ffffff',
@@ -13,6 +14,9 @@ export const colors = {
   bostonBlue: '#318cbf',
   astral: '#2e84b4',
   manhattan: '#f8bb86',
+  conifer: '#a7d944',
   feijoa: '#a5dc86',
-  froly: '#f27474'
+  froly: '#f27474',
+  red: '#ff0000',
+  spicyMix: '#906447'
 };

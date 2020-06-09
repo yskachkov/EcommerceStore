@@ -4,20 +4,20 @@ class AuthenticationController {
   baseURL = 'account';
 
   signIn({ login, password }) {
-    const userData = new FormData();
+    const requestData = new FormData();
 
-    userData.append('loginname', login);
-    userData.append('password', password);
+    requestData.append('loginname', login);
+    requestData.append('password', password);
 
     return HttpService({
       method: 'post',
       url: `${this.baseURL}/login`,
-      data: userData
+      data: requestData
     });
   }
 
   updateToken(token) {
-    Session.updateToken(token);
+    return Session.updateToken(token);
   }
 
   restoreToken() {
@@ -25,18 +25,18 @@ class AuthenticationController {
   }
 
   clearToken() {
-    Session.clearToken();
+    return Session.clearToken();
   }
 
   authenticate(token) {
-    const authenticationData = new FormData();
+    const requestData = new FormData();
 
-    authenticationData.append('token', token);
+    requestData.append('token', token);
 
     return HttpService({
       method: 'post',
       url: `${this.baseURL}/login`,
-      data: authenticationData
+      data: requestData
     });
   }
 }

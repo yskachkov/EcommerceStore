@@ -1,5 +1,6 @@
-import AsyncStorage from '@react-native-community/async-storage';
 import isEmpty from 'lodash/isEmpty';
+
+import { Storage } from 'src/services';
 
 class SessionService {
   _token = null;
@@ -11,7 +12,7 @@ class SessionService {
       return token;
     }
 
-    const restoredToken = await AsyncStorage.getItem('userToken');
+    const restoredToken = await Storage.get('userToken');
 
     this.setToken(restoredToken);
 
@@ -23,15 +24,19 @@ class SessionService {
   }
 
   async updateToken(token) {
-    await AsyncStorage.setItem('userToken', token);
+    const setResult = await Storage.set('userToken', token);
 
     this.setToken(token);
+
+    return setResult;
   }
 
   async clearToken() {
-    await AsyncStorage.removeItem('userToken');
+    const removeResult = await Storage.remove('userToken');
 
     this.setToken(null);
+
+    return removeResult;
   }
 }
 

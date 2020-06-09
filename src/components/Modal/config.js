@@ -1,10 +1,16 @@
 import { colors } from 'src/assets/styles/colors';
-import { LoginToContinueModal, InternetConnectionErrorModal, SignInErrorModal } from './components';
+import {
+  LoginToContinueModal,
+  InternetConnectionErrorModal,
+  SignInErrorModal,
+  ProductActionModal
+} from './components';
 
 export const ModalName = {
   LoginToContinue: 'LoginToContinue',
   InternetConnectionError: 'internetConnectionError',
-  SignInError: 'SignInError'
+  SignInError: 'SignInError',
+  ProductAction: 'ProductAction'
 };
 
 export const ModalType = {
@@ -31,5 +37,6 @@ export const icons = {
 export const modals = {
   [ModalName.LoginToContinue]: LoginToContinueModal,
   [ModalName.InternetConnectionError]: InternetConnectionErrorModal,
-  [ModalName.SignInError]: SignInErrorModal
+  [ModalName.SignInError]: SignInErrorModal,
+  [ModalName.ProductAction]: ProductActionModal
 };

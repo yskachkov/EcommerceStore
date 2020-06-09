@@ -1,7 +1,11 @@
 import { connect } from 'react-redux';
 
-import { getProductDetails, getProductDetailsLoading } from 'src/store/product/selectors';
+import {
+  getProductDetails,
+  getLoading as getProductDetailsLoading
+} from 'src/store/product/selectors';
 import { productActions } from 'src/store/product';
+import { addProductToCart } from 'src/store/checkout';
 import { ProductDetails } from './ProductDetails';
 
 const mapStateToProps = state => ({
@@ -10,7 +14,8 @@ const mapStateToProps = state => ({
 });
 
 const mapActionCreatorsToProps = {
-  ...productActions
+  ...productActions,
+  addProductToCart
 };
 
 export const ProductDetailsScreen = connect(

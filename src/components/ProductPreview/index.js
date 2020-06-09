@@ -9,15 +9,11 @@ export const ProductPreview = withMemo(({ data, keyProperty = 'id', style, onPre
   const renderItem = useCallback(
     ({ item, index }) => {
       const previewElementNotLast = index !== data.length - 1;
+      const previewStyle = previewElementNotLast ? styles.previewItem : null;
+
       const handlePreviewPress = () => onPress(item.id);
 
-      return (
-        <Preview
-          {...item}
-          style={previewElementNotLast ? styles.previewItem : null}
-          onPress={handlePreviewPress}
-        />
-      );
+      return <Preview {...item} style={previewStyle} onPress={handlePreviewPress} />;
     },
     [data, onPress]
   );

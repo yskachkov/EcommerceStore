@@ -6,6 +6,7 @@ export * from './TouchableText';
 export * from './BlinkingText';
 export * from './ListRefreshControl';
 export * from './Card';
+export * from './DataRow';
 export * from './CardList';
 export * from './ProductCard';
 export * from './OrderCard';

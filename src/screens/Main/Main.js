@@ -17,26 +17,17 @@ export const Main = memo(
     loadingProducts,
     fetchCategoriesData,
     fetchProducts,
+    fetchCheckoutData,
     refreshCategoriesData,
     clearCategoriesData,
     navigation: { navigate }
   }) => {
-    useEffect(() => {
-      fetchCategoriesData(pageDataConfig);
-
-      return clearCategoriesData;
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
-
     const previewCategories = useMemo(() => categoryIds.map(id => categories[id]), [
       categories,
       categoryIds
     ]);
 
-    const showLoadingSpinner = useMemo(() => loadingCategories || isEmpty(previewCategories), [
-      loadingCategories,
-      previewCategories
-    ]);
+    const showLoadingSpinner = loadingCategories || isEmpty(previewCategories);
 
     const handleCategoryPress = useCallback(
       categoryId => {
@@ -76,6 +67,14 @@ export const Main = memo(
     const handleCategoryListRefresh = useCallback(() => {
       refreshCategoriesData(pageDataConfig);
     }, [refreshCategoriesData]);
+
+    useEffect(() => {
+      fetchCategoriesData(pageDataConfig);
+      fetchCheckoutData();
+
+      return clearCategoriesData;
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     if (showLoadingSpinner) {
       return <LoadingSpinner />;
